@@ -1,12 +1,12 @@
 [
   {
     "id": "client-a",
-    "label": "Client A",
+    "label": "1% Club",
     "note": "AA + MFC + deposits, full telemetry"
   },
   {
     "id": "client-b",
-    "label": "Client B",
+    "label": "Paytm",
     "note": "AA + deposits"
   }
 ]

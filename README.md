@@ -23,18 +23,25 @@ now. The tables are **24-hour** windows and include overnight batch refresh, whe
 still-pending task's clock keeps running. Those averages are deliberately *not*
 presented as single-user latency.
 
-## Anonymisation
+## What is and isn't published
 
-This repository is public, so no client can be identifiable from it.
+This repository is public and publishes clients under their real names, along
+with their latency, backlog and failure counts.
 
-- Base URLs, login ids and credentials live only in GitHub Actions secrets.
-- `config/tenants.json` holds nothing but an opaque id and a display label.
-- Before writing to disk, `scripts/fetch.mjs` scrubs the base URL, hostname, host
-  slug, login id and the tenant id the API echoes back — plus environment/vendor
-  terms — replacing each with the opaque id.
-- The fetcher then re-scans its own output and **throws** if any identifying term
-  survived, so a leak fails the run instead of being committed.
-- The workflow runs a second, independent `grep` gate before committing.
+- **Credentials and base URLs live only in GitHub Actions secrets** and are never
+  committed. They are not present in any API response body either.
+- The workflow gates every run on a credential-shaped string (a JWT, a bearer
+  header, a `password` field) appearing anywhere under `data/`, and fails the run
+  rather than commit one.
+- Upstream error strings are published verbatim, including tenant ids — a mangled
+  tenant id makes diagnosing a broken tenant materially harder.
+
+To publish anonymously instead, set `ANONYMISE=1` in the workflow env. Every
+identifying term (base URL, hostname, host slug, login id, echoed tenant id, plus
+environment/vendor names) is then replaced by the tenant's opaque id, and the
+fetcher re-scans its own output and **throws** if any term survived — so a leak
+fails the run instead of being committed. Give `config/tenants.json` opaque
+labels to match.
 
 ## Configuration
 

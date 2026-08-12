@@ -35,15 +35,17 @@ jobs:
           CLIENT_B_PASS: ${{ secrets.CLIENT_B_PASS }}
         run: node scripts/fetch.mjs
 
-      - name: Verify anonymisation
-        # Second, independent gate. The fetcher already aborts on a surviving
-        # term; this catches anything reintroduced by a bad edit to the script.
+      - name: Verify no credentials leaked
+        # Clients are published under their real names, so identity is not
+        # gated. Credentials still must never reach a public file: a JWT
+        # (eyJ...), a bearer header or a password field echoed back in an
+        # error body would all land here.
         run: |
-          if grep -riE 'onepercent|paytm|fiulive|finfactor|wealthscape' data/; then
-            echo "::error::identifying terms found in data/ - refusing to publish"
+          if grep -rEi 'eyJ[A-Za-z0-9_-]{10}|bearer [A-Za-z0-9._-]{20}|"password"' data/; then
+            echo "::error::credential-shaped string found in data/ - refusing to publish"
             exit 1
           fi
-          echo "anonymisation OK"
+          echo "no credentials in data/"
 
       - name: Commit snapshot
         run: |

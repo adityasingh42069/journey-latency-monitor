@@ -41,14 +41,18 @@ async function req(url, opts = {}) {
 }
 
 // ---------------------------------------------------------------------------
-// Anonymisation. Every identifying term is replaced by the tenant's public id.
-// buildScrubber collects the base URL, hostname, host slug, login id and the
-// tenantId the API echoes back, then rewrites them out of the payload.
+// Anonymisation - OPT-IN, off by default.
 //
-// GLOBAL_TERMS are environment/vendor names that are not client-specific but
-// still appear in upstream error strings; they collapse to a neutral token so
-// the published data carries no infrastructure identity either.
+// This dashboard publishes clients under their real names, so identity is not
+// scrubbed and upstream error strings stay readable (a mangled tenantId makes
+// diagnosing a broken tenant materially harder). Set ANONYMISE=1 to restore
+// full scrubbing: every identifying term is then replaced by the tenant's
+// opaque id, and the run aborts if any term survives.
+//
+// Credentials are never in scope either way - they live only in env/secrets
+// and never appear in an API response body.
 // ---------------------------------------------------------------------------
+const ANONYMISE = process.env.ANONYMISE === "1";
 const GLOBAL_TERMS = (process.env.SCRUB_TERMS ?? "fiulive,finfactor,wealthscape")
   .split(",")
   .map((s) => s.trim())
@@ -243,7 +247,9 @@ async function collect(tenant) {
     shell.error = { stage: "telemetry", status: first?.status, message: first?.reason };
   }
 
-  // 3. Anonymise before anything touches disk.
+  // 3. Anonymise before anything touches disk, when asked to.
+  if (!ANONYMISE) return shell;
+
   const { scrub, leaks } = buildScrubber(id, base, user, tenantId);
   const cleaned = JSON.parse(scrub(JSON.stringify(shell)));
   const remaining = leaks(JSON.stringify(cleaned));
