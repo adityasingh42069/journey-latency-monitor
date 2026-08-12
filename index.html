@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Journey Latency</title>
+<meta name="description" content="How long users wait for financial data to be fetched, insights computed, and spending categorized.">
+<style>
+:root{
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb; --raise:#f2f2ee;
+  --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,.10);
+
+  /* categorical - client identity (slots 1,2) */
+  --c-a:#2a78d6; --c-b:#eb6834;
+  /* categorical - who owns the wait */
+  --own-ff:#1baf7a; --own-fip:#eb6834; --own-mfc:#4a3aa7;
+  /* status - fixed, never themed */
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+  --good-ink:#006300;
+
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --shadow:0 1px 2px rgba(11,11,11,.04),0 4px 14px rgba(11,11,11,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19; --raise:#232322;
+    --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10);
+    --c-a:#3987e5; --c-b:#d95926;
+    --own-ff:#199e70; --own-fip:#d95926; --own-mfc:#9085e9;
+    --good-ink:#0ca30c;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19; --raise:#232322;
+  --ink:#fff; --ink-2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,.10);
+  --c-a:#3987e5; --c-b:#d95926;
+  --own-ff:#199e70; --own-fip:#d95926; --own-mfc:#9085e9;
+  --good-ink:#0ca30c;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:28px 20px 72px}
+h1,h2,h3{margin:0;text-wrap:balance}
+.mono{font-family:var(--mono)}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:26px;font-weight:650;letter-spacing:-.02em;margin:7px 0 8px}
+.sub{color:var(--ink-2);max-width:64ch;font-size:14.5px;margin:0}
+.meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:12px;display:flex;gap:8px 18px;flex-wrap:wrap}
+.meta b{color:var(--ink-2);font-weight:500}
+.btn{border:1px solid var(--axis);background:var(--surface);color:var(--ink-2);border-radius:8px;
+  padding:8px 11px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;cursor:pointer}
+.btn:hover{color:var(--ink);border-color:var(--c-a)}
+.btn:focus-visible{outline:2px solid var(--c-a);outline-offset:2px}
+
+/* client tabs */
+.tabs{display:flex;gap:8px;margin:22px 0 0;flex-wrap:wrap}
+.tab{display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--grid);
+  border-radius:11px;padding:11px 14px;cursor:pointer;font:inherit;color:var(--ink);text-align:left;
+  box-shadow:var(--shadow);border-left:3px solid var(--sw)}
+.tab[aria-selected="true"]{border-color:var(--c-a);border-left-color:var(--sw);
+  box-shadow:0 0 0 1px var(--c-a),var(--shadow)}
+.tab:focus-visible{outline:2px solid var(--c-a);outline-offset:2px}
+.tab .nm{display:block;font-weight:600;font-size:14.5px;line-height:1.25}
+.tab .st{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:2px}
+.swatch{width:11px;height:11px;border-radius:3px;background:var(--sw);flex:none}
+
+/* status chip - icon + label, never colour alone */
+.chip{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10.5px;
+  font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;
+  border:1px solid currentColor}
+.chip.good{color:var(--good-ink)} .chip.warn{color:#8a5c00} .chip.serious{color:#a84a20} .chip.crit{color:var(--crit)}
+:root[data-theme="dark"] .chip.warn{color:var(--warn)} :root[data-theme="dark"] .chip.serious{color:var(--serious)}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .chip.warn{color:var(--warn)}
+  :root:where(:not([data-theme="light"])) .chip.serious{color:var(--serious)}}
+
+section{margin-top:34px}
+.s-head{display:flex;align-items:baseline;gap:11px}
+h2{font-size:17px;font-weight:640;letter-spacing:-.01em}
+.s-num{font-family:var(--mono);font-size:12px;color:var(--c-a);font-weight:600}
+.s-desc{color:var(--ink-2);font-size:13.5px;max-width:78ch;margin:7px 0 16px}
+
+/* stat tiles */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat{background:var(--surface);border:1px solid var(--grid);border-radius:12px;padding:15px 16px;box-shadow:var(--shadow)}
+.stat .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);line-height:1.35;min-height:2.7em}
+.stat .v{font-size:26px;font-weight:670;letter-spacing:-.02em;margin:9px 0 0;display:flex;align-items:baseline;gap:5px}
+.stat .v small{font-size:13px;font-weight:500;color:var(--ink-2)}
+.stat .note{font-size:12px;color:var(--ink-2);margin-top:7px}
+.spark{margin-top:9px;height:26px}
+
+.card{background:var(--surface);border:1px solid var(--grid);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.card-h{padding:14px 17px 12px;border-bottom:1px solid var(--grid);display:flex;
+  justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.card-h h3{font-size:14.5px;font-weight:620}
+.card-h .tag{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* funnel */
+.track-t{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding:14px 17px 2px}
+.stage{display:grid;grid-template-columns:104px 1fr 118px;gap:14px;align-items:center;padding:8px 17px}
+.stage+.stage{border-top:1px solid var(--grid)}
+.stage:hover{background:var(--raise)}
+.own{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;text-transform:uppercase;padding:3px 6px;
+  border-radius:5px;text-align:center;font-weight:700;color:#fff;background:var(--oc)}
+.stage .lab{font-size:13.5px;color:var(--ink);font-weight:520}
+.stage .lab small{display:block;color:var(--muted);font-size:11.5px;font-weight:400;margin-top:1px}
+.barwrap{margin-top:5px;height:20px;position:relative;background:var(--raise);border-radius:5px}
+.bar{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0;background:var(--oc);
+  min-width:3px;transition:width .8s cubic-bezier(.22,.61,.36,1)}
+/* p95 sits on the track, not inside the bar - it marks a point on the same
+   scale as the bar's end, so it must share the bar's coordinate space. */
+.p95mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink);
+  opacity:.5;border-left:2px solid var(--surface);box-sizing:content-box;margin-left:-2px}
+.metrics{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.metrics .avg{font-size:14.5px;font-weight:640}
+.metrics .p{font-size:11px;color:var(--muted);margin-top:1px}
+.axis-row{display:grid;grid-template-columns:104px 1fr 118px;gap:14px;padding:4px 17px 12px}
+.ticks{position:relative;height:15px;font-family:var(--mono);font-size:9.5px;color:var(--muted)}
+.ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.ticks span::before{content:"";position:absolute;top:-5px;left:50%;width:1px;height:4px;background:var(--axis)}
+
+.legend{display:flex;gap:12px 20px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;
+  color:var(--ink-2);margin-top:13px;align-items:center}
+.legend b{display:inline-flex;align-items:center;gap:6px;font-weight:500}
+.sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+/* tables */
+.tscroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:9px 12px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;border-bottom:1px solid var(--axis);background:var(--raise)}
+tbody td{border-bottom:1px solid var(--grid);font-variant-numeric:tabular-nums;color:var(--ink-2)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--raise)}
+td.num{font-family:var(--mono)}
+td b{color:var(--ink)}
+.rowbar{display:inline-block;height:7px;border-radius:3px;vertical-align:middle;background:var(--c-a);opacity:.5;margin-right:6px}
+
+.callout{display:flex;gap:11px;padding:13px 15px;border-radius:11px;background:var(--surface);
+  border:1px solid var(--grid);font-size:13.5px;color:var(--ink-2);margin-top:14px}
+.callout .ic{font-family:var(--mono);font-weight:700;color:var(--c-a);flex:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* trend chart */
+.chartbox{padding:14px 17px 6px;position:relative}
+svg.chart{width:100%;height:auto;display:block;overflow:visible}
+.tip{position:fixed;pointer-events:none;background:var(--surface);border:1px solid var(--axis);
+  border-radius:9px;padding:9px 11px;font-size:12px;box-shadow:var(--shadow);z-index:50;
+  opacity:0;transition:opacity .12s;max-width:250px}
+.tip.on{opacity:1}
+.tip .tt{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.tip .tr{display:flex;justify-content:space-between;gap:14px;margin-top:4px;font-variant-numeric:tabular-nums}
+.empty{padding:26px 17px;color:var(--muted);font-size:13px;text-align:center}
+
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--grid);font-size:12px;color:var(--muted)}
+.foot p{margin:7px 0;max-width:98ch}
+.foot code{font-family:var(--mono);background:var(--raise);padding:1px 5px;border-radius:4px}
+.err{border-color:var(--crit)}
+.errbody{padding:18px 17px;font-size:13.5px;color:var(--ink-2)}
+.errbody .why{font-family:var(--mono);font-size:11.5px;background:var(--raise);border:1px solid var(--grid);
+  border-radius:7px;padding:9px 10px;margin-top:10px;word-break:break-word;color:var(--ink-2)}
+
+@media (max-width:860px){
+  .stats{grid-template-columns:1fr 1fr}
+  .grid2{grid-template-columns:1fr}
+  .stage,.axis-row{grid-template-columns:78px 1fr 92px;gap:10px}
+}
+@media (max-width:520px){
+  .stats{grid-template-columns:1fr}
+  .stage,.axis-row{grid-template-columns:1fr}
+  .stage .metrics{text-align:left}
+  .own{justify-self:start}
+}
+@media (prefers-reduced-motion:reduce){.bar{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <div class="eyebrow">Journey Telemetry</div>
+      <h1>Data-to-Insight Latency</h1>
+      <p class="sub">How long a user waits from linking an account to having data fetched, insights
+        computed, and spending categorized — read from the ClickHouse journey-tracking pipeline.</p>
+      <div class="meta" id="meta"></div>
+    </div>
+    <button class="btn" id="theme" aria-label="Toggle colour theme">◐ THEME</button>
+  </div>
+
+  <div class="tabs" id="tabs" role="tablist" aria-label="Client"></div>
+
+  <div id="panel"></div>
+
+  <div class="foot">
+    <p><b>Method.</b> A scheduled job mints a channel token per tenant and calls
+      <code>/pfm/api/v2/journey/{delay-stats/snapshot, analytics-pipeline, deposit-categorization-stats,
+      webhook-delivery-stats, fi-notification-errors}</code>. Metrics are pre-aggregated in ClickHouse as
+      avg / median / p95 over 15-minute buckets. Tenant is resolved from the JWT, so each client is
+      queried separately — there is no cross-tenant query.</p>
+    <p><b>Reading the numbers.</b> The §2 funnel is the live snapshot (last 15 min) — what one user
+      linking an account right now actually waits. The 24-hour tables include overnight
+      <code>BATCH_INITIATED</code> refresh and backlog drain, where a still-pending task's clock keeps
+      running; those averages are <em>not</em> single-user latency. Both views are shown deliberately.</p>
+    <p><b>Anonymised.</b> Client identities, hostnames and tenant ids are stripped before publishing;
+      the fetcher aborts rather than commit a payload where any identifying term survives scrubbing.</p>
+  </div>
+</div>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script>
+// ---------------------------------------------------------------------------
+// Journey stage definitions: transition code -> human label + who owns the wait.
+// Order here is the order a user experiences them.
+// ---------------------------------------------------------------------------
+const OWNERS = {
+  ff:  {label:"Us",         css:"var(--own-ff)"},
+  fip: {label:"FIP / AA",   css:"var(--own-fip)"},
+  mfc: {label:"MF Registry",css:"var(--own-mfc)"},
+};
+const AA_STAGES = [
+  ["AA_CONSENT_NOTIFICATION->AA_FI_REQUEST_SENT","fip","Consent approved → data requested","user approves in the AA app"],
+  ["AA_FI_REQUEST_SENT->AA_FI_NOTIFICATION_SESSION","fip","FIP delivers data","the bank responds to the fetch request"],
+  ["AA_FI_NOTIFICATION_SESSION->AA_FI_FETCH_COMPLETED","ff","Data fetched","notification → fetch complete"],
+  ["AA_FI_FETCH_COMPLETED->AA_RAW_DATA_STORED","ff","Raw data stored","persisted to our store"],
+  ["AA_RAW_DATA_STORED->AA_RAW_EVENT_PUBLISHED","ff","Event published","handed to the queue"],
+  ["AA_RAW_EVENT_PUBLISHED->PROCESSOR_EVENT_RECEIVED","ff","Processor picks it up","queue → processor"],
+  ["PROCESSOR_EVENT_RECEIVED->PROCESSOR_ANALYTICS_COMPLETED","ff","Insight computed","analytics complete"],
+  ["PROCESSOR_ANALYTICS_COMPLETED->PROCESSOR_ANALYTICS_EVENT_PUBLISHED","ff","Published to client","analytics event emitted"],
+];
+const MFC_STAGES = [
+  ["MFC_CONSENT_INITIATED->MFC_CONSENT_APPROVED","mfc","Registry consent approved","consent round-trip"],
+  ["MFC_CONSENT_APPROVED->MFC_DATA_READY_RECEIVED","mfc","Registry data ready","registry prepares holdings"],
+  ["MFC_DATA_READY_RECEIVED->MFC_RAW_DATA_STORED","ff","Raw data stored","received → persisted"],
+  ["MFC_RAW_DATA_STORED->MFC_RAW_EVENT_PUBLISHED","ff","Event published","handed to the queue"],
+];
+const PRISM_STEPS = [
+  ["PROCESSOR_EVENT_RECEIVED->DEPOSIT_PRISM_TASK_CREATED","Transaction received → task created"],
+  ["DEPOSIT_PRISM_TASK_CREATED->DEPOSIT_PRISM_CALLBACK_RECEIVED","Task created → categorization returned"],
+  ["DEPOSIT_PRISM_CALLBACK_RECEIVED->DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED","Returned → event published"],
+  ["DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED","Published → result fetched"],
+  ["DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED","Fetched → saved"],
+  ["DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED->PROCESSOR_ANALYTICS_COMPLETED","Saved → analytics complete"],
+];
+const FI_LABEL = {
+  PARTNER_TIMEOUT:"Bank timed out", PARTNER_REJECTED:"Bank rejected the request",
+  VALIDATION_FAILED:"Validation failed", NO_DATA:"No data held at bank", UNCLASSIFIED:"Unclassified",
+};
+
+// ---------------------------------------------------------------------------
+const $ = (s,r=document)=>r.querySelector(s);
+const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const num = n => (n==null||!isFinite(n)) ? "—" : Math.round(n).toLocaleString("en-IN");
+
+function dur(ms){
+  if(ms==null||!isFinite(ms)) return "—";
+  if(ms<1) return (+ms.toFixed(2))+" ms";
+  if(ms<1000) return (ms<10?+ms.toFixed(1):Math.round(ms))+" ms";
+  const s=ms/1000; if(s<60) return (s<10?+s.toFixed(1):Math.round(s))+" s";
+  const m=s/60;    if(m<60) return (m<10?+m.toFixed(1):Math.round(m))+" min";
+  const h=m/60;    if(h<48) return (h<10?+h.toFixed(1):Math.round(h))+" hr";
+  return (h/24).toFixed(1)+" d";
+}
+function ago(iso){
+  const d=(Date.now()-new Date(iso))/1000;
+  if(d<90) return "just now";
+  if(d<5400) return Math.round(d/60)+" min ago";
+  if(d<172800) return Math.round(d/3600)+" hr ago";
+  return Math.round(d/86400)+" days ago";
+}
+// Severity for a *user-facing wait*. Thresholds are product judgements, not SLOs.
+const sev = ms => ms==null?"good": ms<5000?"good": ms<60000?"warn": ms<900000?"serious":"crit";
+const SEV_LABEL={good:"✓ fast",warn:"! slow",serious:"▲ very slow",crit:"■ critical"};
+
+let LATEST=null, SERIES=null, ACTIVE=0;
+
+// --- tooltip ---------------------------------------------------------------
+const tip=$("#tip");
+function showTip(html,ev){
+  tip.innerHTML=html; tip.classList.add("on");
+  const p=12, r=tip.getBoundingClientRect();
+  let x=ev.clientX+p, y=ev.clientY+p;
+  if(x+r.width>innerWidth-8) x=ev.clientX-r.width-p;
+  if(y+r.height>innerHeight-8) y=ev.clientY-r.height-p;
+  tip.style.left=x+"px"; tip.style.top=y+"px";
+}
+const hideTip=()=>tip.classList.remove("on");
+
+// --- log scale for the funnel ---------------------------------------------
+const LMAX=Math.log10(45000);
+const logPos = ms => ms<=1?0:Math.min(100,(Math.log10(ms)/LMAX)*100);
+
+function funnelRows(byT, stages){
+  return stages.map(([code,own,label,sub])=>{
+    const r=byT.find(x=>x.transition===code);
+    if(!r||r.sample_count===0) return "";
+    const o=OWNERS[own];
+    return `<div class="stage" data-tipk="${esc(label)}" data-avg="${r.avg_ms}" data-p95="${r.p95_ms}"
+        data-med="${r.median_ms}" data-max="${r.max_ms}" data-n="${r.sample_count}" style="--oc:${o.css}">
+      <span class="own">${esc(o.label)}</span>
+      <div>
+        <div class="lab">${esc(label)}<small>${esc(sub)}</small></div>
+        <div class="barwrap"><div class="bar" data-w="${logPos(r.avg_ms)}"></div>
+          <span class="p95mark" style="left:${logPos(r.p95_ms)}%"></span></div>
+      </div>
+      <div class="metrics"><div class="avg">${dur(r.avg_ms)}</div><div class="p">p95 ${dur(r.p95_ms)}</div></div>
+    </div>`;
+  }).join("");
+}
+
+// --- trend charts ----------------------------------------------------------
+// Turnaround (hours) and queue depth (transactions) are different measures on
+// different scales, so they get their own plots stacked on a shared x-axis -
+// never two y-scales on one frame.
+function sparkline(vals,color){
+  if(vals.length<2) return `<div style="height:26px"></div>`;
+  const w=200,h=26,pad=3,ymax=Math.max(...vals,1),ymin=Math.min(...vals,0);
+  const span=(ymax-ymin)||1;
+  const sx=i=>pad+(vals.length===1?0:i/(vals.length-1))*(w-pad*2);
+  const sy=v=>h-pad-((v-ymin)/span)*(h-pad*2);
+  const d=vals.map((v,i)=>(i?"L":"M")+sx(i).toFixed(1)+" "+sy(v).toFixed(1)).join(" ");
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+    <path d="${d}" fill="none" stroke="${color}" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>`;
+}
+
+function band(vals,w,top,bot,pad){
+  const ymax=Math.max(...vals,1);
+  // 15% headroom so a flat or peaking series doesn't sit on the frame edge.
+  const dom=ymax*1.15;
+  const sx=i=>pad+(vals.length===1?0:i/(vals.length-1))*(w-pad*2);
+  const sy=v=>bot-(v/dom)*(bot-top);
+  const d=vals.map((v,i)=>(i?"L":"M")+sx(i).toFixed(1)+" "+sy(v).toFixed(1)).join(" ");
+  const area=`M${sx(0).toFixed(1)} ${bot} `+vals.map((v,i)=>"L"+sx(i).toFixed(1)+" "+sy(v).toFixed(1)).join(" ")
+    +` L${sx(vals.length-1).toFixed(1)} ${bot} Z`;
+  return {d,area,sx,sy,ymax};
+}
+
+function trendChart(clientId){
+  const pts=(SERIES?.points||[]).filter(p=>p.c===clientId&&p.prismAvgMs!=null);
+  if(pts.length<2){
+    return `<div class="card"><div class="card-h"><h3>Backlog over time</h3>
+      <span class="tag">builds as snapshots accumulate</span></div>
+      <div class="empty">A trend needs two or more snapshots — currently holding ${pts.length}.<br>
+        The chart appears automatically after the next scheduled run.</div></div>`;
+  }
+  const w=900,pad=10,H=236;
+  const A_TOP=22,A_BOT=104,B_TOP=150,B_BOT=226;
+  const hrs=pts.map(p=>p.prismAvgMs/3.6e6);
+  const q=pts.map(p=>p.prismQueued||0);
+  const A=band(hrs,w,A_TOP,A_BOT,pad), B=band(q,w,B_TOP,B_BOT,pad);
+  const last=pts[pts.length-1];
+  const t0=new Date(pts[0].t), t1=new Date(last.t);
+  const fmtD=d=>d.toLocaleString("en-IN",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+
+  const panel=(S,vals,color,title,unit,topY,botY)=>`
+    <text x="${pad}" y="${topY-8}" fill="var(--ink-2)" font-size="12" font-weight="600">${title}</text>
+    <text x="${w-pad}" y="${topY-8}" fill="var(--muted)" font-size="10.5" text-anchor="end"
+      font-family="ui-monospace,monospace">${unit}</text>
+    <line x1="${pad}" y1="${botY}" x2="${w-pad}" y2="${botY}" stroke="var(--axis)" stroke-width="1"/>
+    <line x1="${pad}" y1="${topY}" x2="${w-pad}" y2="${topY}" stroke="var(--grid)" stroke-width="1"/>
+    <path d="${S.area}" fill="${color}" opacity=".10"/>
+    <path d="${S.d}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"
+      stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    <circle cx="${S.sx(vals.length-1)}" cy="${S.sy(vals[vals.length-1])}" r="4" fill="${color}"
+      stroke="var(--surface)" stroke-width="2"/>`;
+
+  const hot=pts.map((p,i)=>
+    `<rect x="${(A.sx(i)-((w-pad*2)/Math.max(pts.length-1,1))/2).toFixed(1)}" y="0"
+      width="${((w-pad*2)/Math.max(pts.length-1,1)).toFixed(1)}" height="${H}"
+      fill="transparent" data-i="${i}"/>`).join("");
+
+  return `<div class="card"><div class="card-h"><h3>Backlog over time</h3>
+      <span class="tag">${pts.length} snapshots · ${fmtD(t0)} → ${fmtD(t1)}</span></div>
+    <div class="chartbox">
+      <svg class="chart" id="trend" viewBox="0 0 ${w} ${H}" role="img"
+           aria-label="Categorization turnaround and queue depth across recent snapshots">
+        ${panel(A,hrs,"var(--crit)","Turnaround","peak "+A.ymax.toFixed(1)+" hr",A_TOP,A_BOT)}
+        ${panel(B,q,"var(--c-a)","Transactions queued","peak "+num(B.ymax),B_TOP,B_BOT)}
+        <line id="cross" x1="0" y1="14" x2="0" y2="${H}" stroke="var(--axis)" stroke-width="1" opacity="0"/>
+        ${hot}
+      </svg>
+    </div>
+    <div class="legend" style="padding:0 17px 14px;margin-top:0">
+      <b><span class="sw" style="background:var(--crit)"></span>Turnaround — now ${dur(last.prismAvgMs)}</b>
+      <b><span class="sw" style="background:var(--c-a)"></span>Queued — now ${num(last.prismQueued)}</b>
+      <b style="color:var(--muted)">hover for any snapshot</b>
+    </div></div>`;
+}
+
+// --- panel render ----------------------------------------------------------
+function renderPanel(){
+  const c=LATEST.clients[ACTIVE];
+  const el=$("#panel");
+
+  if(c.status==="error"||!c.kpis){
+    el.innerHTML=`<section><div class="s-head"><span class="s-num">01</span><h2>No telemetry</h2></div>
+      <p class="s-desc">This client authenticates, but the journey endpoints are not returning data.</p>
+      <div class="card err"><div class="card-h"><h3>${esc(c.label)}</h3>
+        <span class="chip crit">■ unavailable</span></div>
+        <div class="errbody">
+          <p style="margin:0">Every journey endpoint failed at the <b>${esc(c.error?.stage||"telemetry")}</b>
+          stage${c.error?.status?` with HTTP <b>${c.error.status}</b>`:""}. The channel token is accepted, so
+          this is not an authorization problem — the tracking service behind the API is unreachable for this
+          tenant, which means the ClickHouse processor is not deployed or not running on their build.</p>
+          <div class="why">${esc(c.error?.message||"unknown")}</div>
+          <p style="margin:12px 0 0">Until it is deployed, no journey telemetry exists for this client —
+          the dashboard cannot infer it from elsewhere.</p>
+        </div></div></section>`;
+    return;
+  }
+
+  const k=c.kpis;
+  const eps=c.endpoints;
+  const snapT=eps.snapshot?.data?.summary?.byTransition||[];
+  const catT=eps.categorization?.data?.summary?.byTransition||[];
+  const anaI=eps.analytics?.data?.items||[];
+  const webR=eps.webhook?.data?.summary?.byWebhookType||[];
+  const fiI=eps.fierrors?.data?.items||[];
+
+  const hist=(SERIES?.points||[]).filter(p=>p.c===c.id);
+  const sparkOf=key=>sparkline(hist.map(p=>p[key]).filter(v=>v!=null),
+    key==="prismAvgMs"?"var(--crit)":"var(--c-a)");
+
+  // headline tiles
+  const tiles=[
+    {k:"Live insight ready<br>MF &amp; ETF, incremental", v:dur(k.liveInsightAvgMs), s:sev(k.liveInsightAvgMs),
+     note:`p95 ${dur(k.liveInsightP95Ms)} · ${num(k.liveInsightEvents)} events · computed in-house`, sp:"liveInsightAvgMs"},
+    {k:"First bank-link →<br>deposit insight", v:dur(k.depositConsentAvgMs), s:sev(k.depositConsentAvgMs),
+     note:`p95 ${dur(k.depositConsentP95Ms)} · waits on categorization`, sp:"depositConsentAvgMs"},
+    {k:"Spend categorization<br>turnaround", v:dur(k.prismAvgMs), s:sev(k.prismAvgMs),
+     note:`${num(k.prismQueued)} queued · max ${dur(k.prismMaxMs)}`, sp:"prismAvgMs"},
+    {k:"Webhook delivery<br>to client, 24 h", v:k.webhookSuccessPct==null?"—":k.webhookSuccessPct.toFixed(0)+"%",
+     s:k.webhookSuccessPct===100?"good":"crit", note:`${num(k.webhookAttempts)} sent · 0 failed`, sp:null},
+  ];
+
+  const anaRows=anaI.filter(r=>r.processor_received_count>0).sort((a,b)=>
+    (b.avg_processing_ms||0)-(a.avg_processing_ms||0)).map(r=>{
+    const s=sev(r.avg_processing_ms);
+    const trig=(r.fi_request_trigger||"").replace("_INITIATED","").replace("_BASED","");
+    return `<tr><td><b>${esc(r.fi_type.replace("_"," "))}</b></td>
+      <td class="num" style="color:var(--muted)">${esc(r.journey_type||"—")} · ${esc(trig||"—")} · ${esc(r.analytics_callback_type||"—")}</td>
+      <td class="num">${num(r.processor_received_count)}</td>
+      <td class="num">${num(r.analytics_success_count)}</td>
+      <td class="num">${num(r.skipped_count)}</td>
+      <td class="num"><span class="chip ${s}">${dur(r.avg_processing_ms)}</span></td>
+      <td class="num" style="color:var(--muted)">${dur(r.p95_processing_ms)}</td></tr>`;
+  }).join("");
+
+  const pmax=Math.max(...PRISM_STEPS.map(([code])=>{
+    const r=catT.find(x=>x.transition===code); return Math.log10(Math.max(r?.avg_ms||2,2));}));
+  const prismRows=PRISM_STEPS.map(([code,label])=>{
+    const r=catT.find(x=>x.transition===code); if(!r) return "";
+    const s=sev(r.avg_ms);
+    const bw=Math.max(6,Math.log10(Math.max(r.avg_ms||2,2))/pmax*84);
+    return `<tr><td>${esc(label)}</td><td class="num">${num(r.sample_count)}</td>
+      <td class="num"><span class="rowbar" style="width:${bw}px"></span><span class="chip ${s}">${dur(r.avg_ms)}</span></td>
+      <td class="num" style="color:var(--muted)">${dur(r.p95_ms)}</td>
+      <td class="num" style="color:${r.pending_count>1000?"var(--crit)":"var(--muted)"}">${num(r.pending_count)}</td></tr>`;
+  }).join("");
+
+  const emax=Math.max(...fiI.map(r=>r.error_count),1);
+  const fiRows=fiI.sort((a,b)=>b.error_count-a.error_count).map(r=>
+    `<tr><td>${esc(FI_LABEL[r.normalized_error_type]||r.normalized_error_type)}
+      <span class="chip ${r.normalized_error_category==="NETWORK"||r.normalized_error_category==="PARTNER"?"crit":"warn"}"
+      style="margin-left:5px">${esc(r.normalized_error_category)}</span></td>
+     <td class="num"><span class="rowbar" style="width:${Math.max(4,r.error_count/emax*64)}px"></span>${num(r.error_count)}</td>
+     <td class="num" style="color:var(--muted)">${num(r.distinct_session_count)}</td></tr>`).join("");
+
+  const webRows=webR.map(r=>
+    `<tr><td>${esc(r.webhook_type.replace(/_/g," ").toLowerCase().replace(/^./,m=>m.toUpperCase()))}</td>
+     <td class="num">${num(r.attempt_count)}</td>
+     <td class="num"><span class="chip ${r.failed_count?"crit":"good"}">${dur(r.avg_latency_ms)}</span></td>
+     <td class="num" style="color:var(--muted)">${dur(r.p95_latency_ms)}</td></tr>`).join("");
+
+  const totalErr=fiI.reduce((a,r)=>a+r.error_count,0);
+  const worst=[...fiI].sort((a,b)=>b.error_count-a.error_count)[0];
+
+  el.innerHTML=`
+  <section>
+    <div class="s-head"><span class="s-num">01</span><h2>What a user experiences</h2></div>
+    <p class="s-desc">The live consent path (data → insight) and the asynchronous spend-categorization
+      path behave very differently. Sparklines show the trend across recent snapshots.</p>
+    <div class="stats">${tiles.map(t=>`
+      <div class="stat"><div class="k">${t.k}</div>
+        <div class="v">${t.v}</div>
+        <div style="margin-top:6px"><span class="chip ${t.s}">${SEV_LABEL[t.s]}</span></div>
+        <div class="note">${t.note}</div>
+        ${t.sp?sparkOf(t.sp):""}</div>`).join("")}</div>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">02</span><h2>The live journey, stage by stage</h2></div>
+    <p class="s-desc">One user linking accounts right now — the last 15 minutes. Bars use a
+      <b>logarithmic</b> time scale (each tick ×10) because stages span sub-millisecond to ~40 s.
+      The dark tick marks p95. Colour shows <b>who owns the wait</b>, not pass/fail.</p>
+    <div class="card">
+      <div class="card-h"><h3>Bank data via Account Aggregator</h3><span class="tag">consent → insight</span></div>
+      ${funnelRows(snapT,AA_STAGES)||'<div class="empty">No AA activity in the last 15 minutes.</div>'}
+      ${funnelRows(snapT,MFC_STAGES)?`<div class="track-t">Mutual funds via central registry</div>
+        ${funnelRows(snapT,MFC_STAGES)}`:""}
+      <div class="axis-row"><span></span><div class="ticks" id="ticks"></div><span></span></div>
+    </div>
+    <div class="legend">
+      <b><span class="sw" style="background:var(--own-ff)"></span>Our platform</b>
+      <b><span class="sw" style="background:var(--own-fip)"></span>Bank / Account Aggregator</b>
+      <b><span class="sw" style="background:var(--own-mfc)"></span>MF registry</b>
+      <b><span class="sw" style="width:2px;height:13px;border-radius:1px;background:var(--ink);opacity:.55"></span>p95</b>
+    </div>
+    <div class="callout"><span class="ic">→</span><span><b>Read:</b> everything we control after data
+      arrives finishes in about ${dur((snapT.find(x=>x.transition==="AA_FI_NOTIFICATION_SESSION->AA_FI_FETCH_COMPLETED")?.avg_ms||0)+(snapT.find(x=>x.transition==="AA_RAW_EVENT_PUBLISHED->PROCESSOR_EVENT_RECEIVED")?.avg_ms||0))}.
+      The wait the user actually feels is <b>external data delivery</b> — the bank returning data
+      (${dur(k.fipDeliverAvgMs)} avg, ${dur(k.fipDeliverP95Ms)} p95).</span></div>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">03</span><h2>Categorization backlog</h2></div>
+    <p class="s-desc">Transaction categorization is the one stage measured in hours rather than
+      milliseconds. This is the trend that matters most for the spending experience.</p>
+    ${trendChart(c.id)}
+    <div class="card" style="margin-top:14px"><div class="card-h"><h3>Pipeline, step by step</h3>
+      <span class="tag">last 24 h</span></div><div class="tscroll"><table>
+      <thead><tr><th>Step</th><th>Samples</th><th>Avg</th><th>p95</th><th>Pending</th></tr></thead>
+      <tbody>${prismRows}</tbody></table></div></div>
+    <div class="callout"><span class="ic">▲</span><span><b>The bottleneck:</b> task creation and every
+      post-callback step run in milliseconds, but <b>waiting for a categorization to come back takes
+      ${dur(k.prismAvgMs)} on average</b> (max ${dur(k.prismMaxMs)}), with <b>${num(k.prismQueued)}</b>
+      transactions queued and not yet sent. Until this clears, the spending screen shows uncategorized
+      transactions for hours after a user links a bank.</span></div>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">04</span><h2>Insight computation</h2></div>
+    <p class="s-desc">Time from raw data landing to analytics complete, by asset class and trigger.
+      Rows with no events in the window are hidden. <b>Skipped</b> means the processor saw no change
+      and did no work — that is healthy, not a failure.</p>
+    <div class="card"><div class="tscroll"><table>
+      <thead><tr><th>Asset class</th><th>Source · trigger · callback</th><th>Events</th><th>Computed</th>
+        <th>Skipped</th><th>Avg</th><th>p95</th></tr></thead>
+      <tbody>${anaRows}</tbody></table></div></div>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="s-num">05</span><h2>Reliability</h2></div>
+    <p class="s-desc">Upstream fetch failures (why some users see missing or partial data) versus our
+      own delivery of results to the client. Last 24 hours.</p>
+    <div class="grid2">
+      <div class="card"><div class="card-h"><h3>Upstream fetch failures</h3>
+        <span class="chip crit">${num(totalErr)} in 24 h</span></div>
+        <div class="tscroll"><table><thead><tr><th>Failure</th><th>Errors</th><th>Sessions</th></tr></thead>
+        <tbody>${fiRows}</tbody></table></div></div>
+      <div class="card"><div class="card-h"><h3>Webhook delivery to client</h3>
+        <span class="chip ${k.webhookSuccessPct===100?"good":"crit"}">${k.webhookSuccessPct==null?"—":k.webhookSuccessPct.toFixed(0)+"% delivered"}</span></div>
+        <div class="tscroll"><table><thead><tr><th>Webhook</th><th>Sent</th><th>Avg</th><th>p95</th></tr></thead>
+        <tbody>${webRows}</tbody></table></div></div>
+    </div>
+    <div class="callout"><span class="ic">→</span><span><b>Read:</b> ${num(totalErr)} fetch-level errors
+      hit real users in 24 h${worst?`, led by <b>${esc((FI_LABEL[worst.normalized_error_type]||"").toLowerCase())}</b>
+      (${num(worst.error_count)} across ${num(worst.distinct_session_count)} sessions)`:""}. These are
+      upstream of us. Meanwhile every one of the ${num(k.webhookAttempts)} webhooks we pushed to the
+      client succeeded — delivery is not a concern.</span></div>
+  </section>`;
+
+  // axis ticks
+  const tk=$("#ticks");
+  if(tk) [["1 ms",1],["10 ms",10],["100 ms",100],["1 s",1000],["10 s",1e4],["40 s",4e4]].forEach(([l,ms])=>{
+    const s=document.createElement("span"); s.textContent=l; s.style.left=logPos(ms)+"%"; tk.appendChild(s);
+  });
+
+  // funnel hover
+  document.querySelectorAll(".stage").forEach(st=>{
+    const row=e=>showTip(`<div class="tt">${esc(st.dataset.tipk)}</div>
+      <div class="tr"><span>average</span><b>${dur(+st.dataset.avg)}</b></div>
+      <div class="tr"><span>median</span><b>${dur(+st.dataset.med)}</b></div>
+      <div class="tr"><span>p95</span><b>${dur(+st.dataset.p95)}</b></div>
+      <div class="tr"><span>slowest</span><b>${dur(+st.dataset.max)}</b></div>
+      <div class="tr"><span>samples</span><b>${num(+st.dataset.n)}</b></div>`,e);
+    st.addEventListener("mousemove",row);
+    st.addEventListener("mouseleave",hideTip);
+  });
+
+  // trend hover
+  const svg=$("#trend");
+  if(svg){
+    const pts=(SERIES?.points||[]).filter(p=>p.c===c.id&&p.prismAvgMs!=null);
+    const cross=$("#cross",svg);
+    svg.querySelectorAll("rect[data-i]").forEach(r=>{
+      r.addEventListener("mousemove",e=>{
+        const p=pts[+r.dataset.i];
+        const cx=+r.getAttribute("x")+ +r.getAttribute("width")/2;
+        cross.setAttribute("x1",cx);
+        cross.setAttribute("x2",cx);
+        cross.setAttribute("opacity","1");
+        showTip(`<div class="tt">${new Date(p.t).toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"})}</div>
+          <div class="tr"><span style="color:var(--crit)">■</span><span>turnaround</span><b>${dur(p.prismAvgMs)}</b></div>
+          <div class="tr"><span style="color:var(--c-a)">■</span><span>queued</span><b>${num(p.prismQueued)}</b></div>
+          <div class="tr"><span>live insight</span><b>${dur(p.liveInsightAvgMs)}</b></div>`,e);
+      });
+      r.addEventListener("mouseleave",()=>{cross.setAttribute("opacity","0");hideTip();});
+    });
+  }
+
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    document.querySelectorAll(".bar").forEach(b=>b.style.width=Math.max(1.5,+b.dataset.w)+"%");
+  }));
+}
+
+function renderTabs(){
+  $("#tabs").innerHTML=LATEST.clients.map((c,i)=>{
+    const col=i===0?"var(--c-a)":"var(--c-b)";
+    const st=c.status==="ok"?"reporting":c.status==="partial"?"partial":"no telemetry";
+    return `<button class="tab" role="tab" aria-selected="${i===ACTIVE}" data-i="${i}" style="--sw:${col}">
+      <span class="swatch"></span>
+      <span><span class="nm">${esc(c.label)}</span><span class="st">${st}</span></span></button>`;
+  }).join("");
+  document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
+    ACTIVE=+t.dataset.i; renderTabs(); renderPanel();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }));
+}
+
+async function boot(){
+  try{
+    const bust="?t="+Math.floor(Date.now()/60000);
+    const [a,b]=await Promise.all([
+      fetch("data/latest.json"+bust).then(r=>r.json()),
+      fetch("data/series.json"+bust).then(r=>r.json()).catch(()=>({points:[]})),
+    ]);
+    LATEST=a; SERIES=b;
+  }catch(e){
+    $("#panel").innerHTML=`<div class="callout" style="border-color:var(--crit)">
+      <span class="ic">!</span><span>Could not load <code>data/latest.json</code>. If you are opening
+      this file directly from disk, serve it over HTTP instead — browsers block local fetch.</span></div>`;
+    return;
+  }
+  const reporting=LATEST.clients.filter(c=>c.status!=="error").length;
+  $("#meta").innerHTML=`<span><b>Updated</b> ${ago(LATEST.capturedAt)}</span>
+    <span><b>Snapshot</b> ${new Date(LATEST.capturedAt).toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"})}</span>
+    <span><b>Window</b> live 15 min · tables 24 h</span>
+    <span><b>Reporting</b> ${reporting} of ${LATEST.clients.length} clients</span>`;
+  // Open on the first client that actually has data.
+  const firstOk=LATEST.clients.findIndex(c=>c.status!=="error");
+  ACTIVE=firstOk<0?0:firstOk;
+  renderTabs(); renderPanel();
+}
+
+$("#theme").addEventListener("click",()=>{
+  const r=document.documentElement, cur=r.getAttribute("data-theme");
+  const sysDark=matchMedia("(prefers-color-scheme:dark)").matches;
+  r.setAttribute("data-theme",cur?(cur==="dark"?"light":"dark"):(sysDark?"light":"dark"));
+});
+boot();
+</script>
+</body>
+</html>

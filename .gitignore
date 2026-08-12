@@ -1,0 +1,4 @@
+# Real tenant identities and credentials. Never commit.
+.env
+.env.local
+*.tok
