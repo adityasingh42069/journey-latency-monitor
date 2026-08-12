@@ -1,0 +1,64 @@
+name: Refresh journey telemetry
+
+on:
+  schedule:
+    # Every 3 hours (8x/day). Times are UTC; GitHub may delay a run under load.
+    - cron: "0 */3 * * *"
+  workflow_dispatch: {}
+
+# A late run must never race a newer one into the same branch.
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch telemetry
+        env:
+          CLIENT_A_BASE: ${{ secrets.CLIENT_A_BASE }}
+          CLIENT_A_USER: ${{ secrets.CLIENT_A_USER }}
+          CLIENT_A_PASS: ${{ secrets.CLIENT_A_PASS }}
+          CLIENT_B_BASE: ${{ secrets.CLIENT_B_BASE }}
+          CLIENT_B_USER: ${{ secrets.CLIENT_B_USER }}
+          CLIENT_B_PASS: ${{ secrets.CLIENT_B_PASS }}
+        run: node scripts/fetch.mjs
+
+      - name: Verify anonymisation
+        # Second, independent gate. The fetcher already aborts on a surviving
+        # term; this catches anything reintroduced by a bad edit to the script.
+        run: |
+          if grep -riE 'onepercent|paytm|fiulive|finfactor|wealthscape' data/; then
+            echo "::error::identifying terms found in data/ - refusing to publish"
+            exit 1
+          fi
+          echo "anonymisation OK"
+
+      - name: Commit snapshot
+        run: |
+          git config user.name  "journey-monitor[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/; then
+            echo "no change in data/ - nothing to commit"
+            exit 0
+          fi
+          git add data/
+          git commit -m "data: snapshot $(date -u '+%Y-%m-%d %H:%M UTC')"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push && exit 0
+            echo "push attempt $i failed; retrying"
+            sleep 5
+          done
+          echo "::error::could not push after 3 attempts"
+          exit 1
