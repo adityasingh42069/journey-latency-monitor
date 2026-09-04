@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-09-04T18:03:06.343Z",
+  "capturedAt": "2026-09-04T22:45:38.862Z",
   "windowMinutes": 1440,
   "clients": [
     {
@@ -13,7 +13,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-09-04T18:03:08.557312082Z",
+          "generatedAt": "2026-09-04T22:45:40.982372022Z",
           "data": {
             "summary": {
               "byTransition": [
@@ -718,7 +718,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-09-04T18:03:08.043389591Z",
+          "generatedAt": "2026-09-04T22:45:40.045075472Z",
           "data": {
             "summary": {
               "byAnalyticsCallbackType": []
@@ -732,53 +732,53 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-09-04T18:03:08.147121543Z",
+          "generatedAt": "2026-09-04T22:45:40.641930137Z",
           "data": {
             "summary": {
               "byWebhookType": [
                 {
                   "webhook_type": "ANALYTICS",
-                  "attempt_count": 9157,
-                  "success_count": 9157,
+                  "attempt_count": 40757,
+                  "success_count": 40757,
                   "failed_count": 0,
                   "retried_message_count": 0,
                   "http_4xx_count": 0,
                   "http_5xx_count": 0,
-                  "avg_latency_ms": 11.56,
-                  "p95_latency_ms": 36.42
+                  "avg_latency_ms": 12.46,
+                  "p95_latency_ms": 42.06
                 },
                 {
                   "webhook_type": "CATEGORIZED_DATA",
-                  "attempt_count": 3146,
-                  "success_count": 3146,
+                  "attempt_count": 13967,
+                  "success_count": 13967,
                   "failed_count": 0,
                   "retried_message_count": 0,
                   "http_4xx_count": 0,
                   "http_5xx_count": 0,
-                  "avg_latency_ms": 27.85,
-                  "p95_latency_ms": 93.95
+                  "avg_latency_ms": 28.7,
+                  "p95_latency_ms": 99.02
                 },
                 {
                   "webhook_type": "CONSENT",
-                  "attempt_count": 6922,
-                  "success_count": 6922,
+                  "attempt_count": 30166,
+                  "success_count": 30166,
                   "failed_count": 0,
                   "retried_message_count": 0,
                   "http_4xx_count": 0,
                   "http_5xx_count": 0,
-                  "avg_latency_ms": 28.06,
-                  "p95_latency_ms": 79.32
+                  "avg_latency_ms": 28.75,
+                  "p95_latency_ms": 88.44
                 },
                 {
                   "webhook_type": "RAW",
-                  "attempt_count": 12000,
-                  "success_count": 12000,
+                  "attempt_count": 53606,
+                  "success_count": 53606,
                   "failed_count": 0,
                   "retried_message_count": 0,
                   "http_4xx_count": 0,
                   "http_5xx_count": 0,
-                  "avg_latency_ms": 26.21,
-                  "p95_latency_ms": 85.09
+                  "avg_latency_ms": 26.29,
+                  "p95_latency_ms": 84.79
                 }
               ]
             },
@@ -790,43 +790,43 @@
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 2715,
+                    "attempt_count": 11995,
                     "webhook_type": "ANALYTICS",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 2715,
-                    "p95_latency_ms": 45.61,
+                    "success_count": 11995,
+                    "p95_latency_ms": 60.32,
                     "failed_count": 0,
-                    "avg_latency_ms": 14.02,
+                    "avg_latency_ms": 15.98,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 3146,
+                    "attempt_count": 13967,
                     "webhook_type": "CATEGORIZED_DATA",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 3146,
-                    "p95_latency_ms": 93.95,
+                    "success_count": 13967,
+                    "p95_latency_ms": 99.02,
                     "failed_count": 0,
-                    "avg_latency_ms": 27.85,
+                    "avg_latency_ms": 28.7,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 3148,
+                    "attempt_count": 13967,
                     "webhook_type": "RAW",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 3148,
-                    "p95_latency_ms": 53.97,
+                    "success_count": 13967,
+                    "p95_latency_ms": 50,
                     "failed_count": 0,
-                    "avg_latency_ms": 14.24,
+                    "avg_latency_ms": 14.46,
                     "fi_type": "DEPOSIT"
                   }
                 ]
@@ -838,29 +838,29 @@
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 2385,
+                    "attempt_count": 11182,
                     "webhook_type": "ANALYTICS",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 2385,
-                    "p95_latency_ms": 48.98,
+                    "success_count": 11182,
+                    "p95_latency_ms": 51.64,
                     "failed_count": 0,
-                    "avg_latency_ms": 11.16,
+                    "avg_latency_ms": 11.22,
                     "fi_type": "EQUITIES"
                   },
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 2384,
+                    "attempt_count": 11182,
                     "webhook_type": "RAW",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 2384,
-                    "p95_latency_ms": 39.88,
+                    "success_count": 11182,
+                    "p95_latency_ms": 43.46,
                     "failed_count": 0,
-                    "avg_latency_ms": 13.56,
+                    "avg_latency_ms": 14.12,
                     "fi_type": "EQUITIES"
                   }
                 ]
@@ -872,29 +872,29 @@
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 619,
+                    "attempt_count": 2438,
                     "webhook_type": "ANALYTICS",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 619,
-                    "p95_latency_ms": 29.71,
+                    "success_count": 2438,
+                    "p95_latency_ms": 29.28,
                     "failed_count": 0,
-                    "avg_latency_ms": 9.63,
+                    "avg_latency_ms": 9.44,
                     "fi_type": "NPS"
                   },
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 619,
+                    "attempt_count": 2442,
                     "webhook_type": "RAW",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 619,
-                    "p95_latency_ms": 78.46,
+                    "success_count": 2442,
+                    "p95_latency_ms": 82.64,
                     "failed_count": 0,
-                    "avg_latency_ms": 25.49,
+                    "avg_latency_ms": 24.96,
                     "fi_type": "NPS"
                   }
                 ]
@@ -906,29 +906,29 @@
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 3438,
+                    "attempt_count": 15142,
                     "webhook_type": "ANALYTICS",
                     "fi_data_origin": "MFC",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 3438,
-                    "p95_latency_ms": 21.65,
+                    "success_count": 15142,
+                    "p95_latency_ms": 22.58,
                     "failed_count": 0,
-                    "avg_latency_ms": 10.23,
+                    "avg_latency_ms": 11.08,
                     "fi_type": "MUTUAL_FUNDS"
                   },
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 4532,
+                    "attempt_count": 19844,
                     "webhook_type": "RAW",
                     "fi_data_origin": "MFC",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 4532,
-                    "p95_latency_ms": 146.74,
+                    "success_count": 19844,
+                    "p95_latency_ms": 149.12,
                     "failed_count": 0,
-                    "avg_latency_ms": 45.65,
+                    "avg_latency_ms": 46.35,
                     "fi_type": "MUTUAL_FUNDS"
                   }
                 ]
@@ -940,15 +940,15 @@
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "",
-                    "attempt_count": 6922,
+                    "attempt_count": 30166,
                     "webhook_type": "CONSENT",
                     "fi_data_origin": "",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 6922,
-                    "p95_latency_ms": 79.32,
+                    "success_count": 30166,
+                    "p95_latency_ms": 88.44,
                     "failed_count": 0,
-                    "avg_latency_ms": 28.06,
+                    "avg_latency_ms": 28.75,
                     "fi_type": ""
                   }
                 ]
@@ -960,15 +960,15 @@
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 1317,
+                    "attempt_count": 6171,
                     "webhook_type": "RAW",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 1317,
-                    "p95_latency_ms": 32.32,
+                    "success_count": 6171,
+                    "p95_latency_ms": 32.44,
                     "failed_count": 0,
-                    "avg_latency_ms": 11.14,
+                    "avg_latency_ms": 11.08,
                     "fi_type": "ETF"
                   }
                 ]
@@ -978,155 +978,155 @@
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 2715,
+                "attempt_count": 11995,
                 "webhook_type": "ANALYTICS",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 2715,
-                "p95_latency_ms": 45.61,
+                "success_count": 11995,
+                "p95_latency_ms": 60.32,
                 "failed_count": 0,
-                "avg_latency_ms": 14.02,
+                "avg_latency_ms": 15.98,
                 "fi_type": "DEPOSIT"
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 2385,
+                "attempt_count": 11182,
                 "webhook_type": "ANALYTICS",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 2385,
-                "p95_latency_ms": 48.98,
+                "success_count": 11182,
+                "p95_latency_ms": 51.64,
                 "failed_count": 0,
-                "avg_latency_ms": 11.16,
+                "avg_latency_ms": 11.22,
                 "fi_type": "EQUITIES"
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 619,
+                "attempt_count": 2438,
                 "webhook_type": "ANALYTICS",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 619,
-                "p95_latency_ms": 29.71,
+                "success_count": 2438,
+                "p95_latency_ms": 29.28,
                 "failed_count": 0,
-                "avg_latency_ms": 9.63,
+                "avg_latency_ms": 9.44,
                 "fi_type": "NPS"
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 3438,
+                "attempt_count": 15142,
                 "webhook_type": "ANALYTICS",
                 "fi_data_origin": "MFC",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 3438,
-                "p95_latency_ms": 21.65,
+                "success_count": 15142,
+                "p95_latency_ms": 22.58,
                 "failed_count": 0,
-                "avg_latency_ms": 10.23,
+                "avg_latency_ms": 11.08,
                 "fi_type": "MUTUAL_FUNDS"
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 3146,
+                "attempt_count": 13967,
                 "webhook_type": "CATEGORIZED_DATA",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 3146,
-                "p95_latency_ms": 93.95,
+                "success_count": 13967,
+                "p95_latency_ms": 99.02,
                 "failed_count": 0,
-                "avg_latency_ms": 27.85,
+                "avg_latency_ms": 28.7,
                 "fi_type": "DEPOSIT"
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "",
-                "attempt_count": 6922,
+                "attempt_count": 30166,
                 "webhook_type": "CONSENT",
                 "fi_data_origin": "",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 6922,
-                "p95_latency_ms": 79.32,
+                "success_count": 30166,
+                "p95_latency_ms": 88.44,
                 "failed_count": 0,
-                "avg_latency_ms": 28.06,
+                "avg_latency_ms": 28.75,
                 "fi_type": ""
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 3148,
+                "attempt_count": 13967,
                 "webhook_type": "RAW",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 3148,
-                "p95_latency_ms": 53.97,
+                "success_count": 13967,
+                "p95_latency_ms": 50,
                 "failed_count": 0,
-                "avg_latency_ms": 14.24,
+                "avg_latency_ms": 14.46,
                 "fi_type": "DEPOSIT"
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 2384,
+                "attempt_count": 11182,
                 "webhook_type": "RAW",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 2384,
-                "p95_latency_ms": 39.88,
+                "success_count": 11182,
+                "p95_latency_ms": 43.46,
                 "failed_count": 0,
-                "avg_latency_ms": 13.56,
+                "avg_latency_ms": 14.12,
                 "fi_type": "EQUITIES"
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 1317,
+                "attempt_count": 6171,
                 "webhook_type": "RAW",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 1317,
-                "p95_latency_ms": 32.32,
+                "success_count": 6171,
+                "p95_latency_ms": 32.44,
                 "failed_count": 0,
-                "avg_latency_ms": 11.14,
+                "avg_latency_ms": 11.08,
                 "fi_type": "ETF"
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 619,
+                "attempt_count": 2442,
                 "webhook_type": "RAW",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 619,
-                "p95_latency_ms": 78.46,
+                "success_count": 2442,
+                "p95_latency_ms": 82.64,
                 "failed_count": 0,
-                "avg_latency_ms": 25.49,
+                "avg_latency_ms": 24.96,
                 "fi_type": "NPS"
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 4532,
+                "attempt_count": 19844,
                 "webhook_type": "RAW",
                 "fi_data_origin": "MFC",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 4532,
-                "p95_latency_ms": 146.74,
+                "success_count": 19844,
+                "p95_latency_ms": 149.12,
                 "failed_count": 0,
-                "avg_latency_ms": 45.65,
+                "avg_latency_ms": 46.35,
                 "fi_type": "MUTUAL_FUNDS"
               }
             ],
@@ -1137,24 +1137,24 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-09-04T18:03:08.323938589Z",
+          "generatedAt": "2026-09-04T22:45:40.011175845Z",
           "data": {
             "summary": {
               "byTransition": [
                 {
                   "transition": "PROCESSOR_EVENT_RECEIVED->DEPOSIT_PRISM_TASK_CREATED",
-                  "sample_count": 120888,
-                  "pending_count": 93919,
-                  "avg_ms": 149.7,
-                  "median_ms": 143.29,
-                  "p95_ms": 185.24,
+                  "sample_count": 75030,
+                  "pending_count": 61455,
+                  "avg_ms": 154.28,
+                  "median_ms": 148.77,
+                  "p95_ms": 192.57,
                   "min_ms": 104,
                   "max_ms": 2451
                 },
                 {
                   "transition": "PROCESSOR_EVENT_RECEIVED->DEPOSIT_PRISM_TASK_CREATE_FAILED",
                   "sample_count": 0,
-                  "pending_count": 214807,
+                  "pending_count": 136484,
                   "avg_ms": null,
                   "median_ms": null,
                   "p95_ms": null,
@@ -1163,19 +1163,19 @@
                 },
                 {
                   "transition": "DEPOSIT_PRISM_TASK_CREATED->DEPOSIT_PRISM_CALLBACK_RECEIVED",
-                  "sample_count": 23520,
-                  "pending_count": 119837,
-                  "avg_ms": 481283375.39,
-                  "median_ms": 450951685.18,
-                  "p95_ms": 604293851.29,
-                  "min_ms": 2924,
+                  "sample_count": 5886,
+                  "pending_count": 74464,
+                  "avg_ms": 415343334.62,
+                  "median_ms": 354406131.8,
+                  "p95_ms": 604754877.23,
+                  "min_ms": 4276,
                   "max_ms": 605880534
                 },
                 {
                   "transition": "DEPOSIT_PRISM_CALLBACK_RECEIVED->DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED",
-                  "sample_count": 23520,
+                  "sample_count": 5886,
                   "pending_count": 0,
-                  "avg_ms": 0.27,
+                  "avg_ms": 0.3,
                   "median_ms": 0,
                   "p95_ms": 1,
                   "min_ms": 0,
@@ -1183,65 +1183,65 @@
                 },
                 {
                   "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
-                  "sample_count": 23520,
-                  "pending_count": 12,
-                  "avg_ms": 4123.96,
-                  "median_ms": 3459.66,
-                  "p95_ms": 10722.03,
-                  "min_ms": 144,
+                  "sample_count": 5892,
+                  "pending_count": 2,
+                  "avg_ms": 5535.08,
+                  "median_ms": 4647.97,
+                  "p95_ms": 14726.07,
+                  "min_ms": 174,
                   "max_ms": 252266
                 },
                 {
                   "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCH_FAILED",
-                  "sample_count": 1,
-                  "pending_count": 23519,
-                  "avg_ms": 112,
-                  "median_ms": 112,
-                  "p95_ms": 112,
-                  "min_ms": 112,
-                  "max_ms": 112
+                  "sample_count": 0,
+                  "pending_count": 5886,
+                  "avg_ms": null,
+                  "median_ms": null,
+                  "p95_ms": null,
+                  "min_ms": null,
+                  "max_ms": null
                 },
                 {
                   "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
-                  "sample_count": 23520,
+                  "sample_count": 5892,
                   "pending_count": 0,
-                  "avg_ms": 136.62,
-                  "median_ms": 88.06,
-                  "p95_ms": 491.39,
-                  "min_ms": 3,
+                  "avg_ms": 232.17,
+                  "median_ms": 162.38,
+                  "p95_ms": 775.68,
+                  "min_ms": 4,
                   "max_ms": 6831
                 },
                 {
                   "transition": "DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED->PROCESSOR_ANALYTICS_COMPLETED",
-                  "sample_count": 23519,
+                  "sample_count": 5891,
                   "pending_count": 1,
-                  "avg_ms": 0.14,
-                  "median_ms": 0.04,
-                  "p95_ms": 0.77,
+                  "avg_ms": 0.15,
+                  "median_ms": 0.05,
+                  "p95_ms": 0.67,
                   "min_ms": 0,
-                  "max_ms": 10
+                  "max_ms": 9
                 }
               ]
             },
             "groups": [
               {
                 "fiType": "DEPOSIT",
-                "count": 16,
+                "count": 15,
                 "items": [
                   {
-                    "pending_count": 93919,
-                    "p95_ms": 185.24,
-                    "avg_ms": 149.7,
-                    "sample_count": 120888,
+                    "pending_count": 61455,
+                    "p95_ms": 192.57,
+                    "avg_ms": 154.28,
+                    "sample_count": 75030,
                     "min_ms": 104,
                     "fi_request_trigger": "",
-                    "median_ms": 143.29,
+                    "median_ms": 148.77,
                     "transition": "PROCESSOR_EVENT_RECEIVED->DEPOSIT_PRISM_TASK_CREATED",
                     "max_ms": 2451,
                     "fi_type": "DEPOSIT"
                   },
                   {
-                    "pending_count": 214807,
+                    "pending_count": 136484,
                     "p95_ms": null,
                     "avg_ms": null,
                     "sample_count": 0,
@@ -1253,13 +1253,13 @@
                     "fi_type": "DEPOSIT"
                   },
                   {
-                    "pending_count": 119837,
-                    "p95_ms": 604293851.29,
-                    "avg_ms": 481283375.39,
-                    "sample_count": 23520,
-                    "min_ms": 2924,
+                    "pending_count": 74464,
+                    "p95_ms": 604754877.23,
+                    "avg_ms": 415343334.62,
+                    "sample_count": 5886,
+                    "min_ms": 4276,
                     "fi_request_trigger": "",
-                    "median_ms": 450951685.18,
+                    "median_ms": 354406131.8,
                     "transition": "DEPOSIT_PRISM_TASK_CREATED->DEPOSIT_PRISM_CALLBACK_RECEIVED",
                     "max_ms": 605880534,
                     "fi_type": "DEPOSIT"
@@ -1267,8 +1267,8 @@
                   {
                     "pending_count": 0,
                     "p95_ms": 1,
-                    "avg_ms": 0.27,
-                    "sample_count": 23520,
+                    "avg_ms": 0.3,
+                    "sample_count": 5886,
                     "min_ms": 0,
                     "fi_request_trigger": "",
                     "median_ms": 0,
@@ -1277,7 +1277,7 @@
                     "fi_type": "DEPOSIT"
                   },
                   {
-                    "pending_count": 12,
+                    "pending_count": 2,
                     "p95_ms": null,
                     "avg_ms": null,
                     "sample_count": 0,
@@ -1290,42 +1290,42 @@
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 7092.54,
-                    "avg_ms": 5087.4,
-                    "sample_count": 108,
+                    "p95_ms": 9060.6,
+                    "avg_ms": 6433,
+                    "sample_count": 96,
                     "min_ms": 222,
                     "fi_request_trigger": "ACCOUNT_INITIATED",
-                    "median_ms": 4991.68,
+                    "median_ms": 6198.3,
                     "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
                     "max_ms": 59104,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 10624.63,
-                    "avg_ms": 4117.75,
-                    "sample_count": 21638,
-                    "min_ms": 144,
+                    "p95_ms": 14195.1,
+                    "avg_ms": 5510.42,
+                    "sample_count": 4502,
+                    "min_ms": 196,
                     "fi_request_trigger": "BATCH_INITIATED",
-                    "median_ms": 3489.79,
+                    "median_ms": 4818.83,
                     "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
                     "max_ms": 252266,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 12131.04,
-                    "avg_ms": 4141.12,
-                    "sample_count": 1774,
-                    "min_ms": 158,
+                    "p95_ms": 16993.7,
+                    "avg_ms": 5554.26,
+                    "sample_count": 1294,
+                    "min_ms": 174,
                     "fi_request_trigger": "CONSENT_BASED",
-                    "median_ms": 2998.86,
+                    "median_ms": 3938.5,
                     "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
                     "max_ms": 156996,
                     "fi_type": "DEPOSIT"
                   },
                   {
-                    "pending_count": 23519,
+                    "pending_count": 5886,
                     "p95_ms": null,
                     "avg_ms": null,
                     "sample_count": 0,
@@ -1338,81 +1338,69 @@
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 112,
-                    "avg_ms": 112,
-                    "sample_count": 1,
-                    "min_ms": 112,
-                    "fi_request_trigger": "BATCH_INITIATED",
-                    "median_ms": 112,
-                    "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCH_FAILED",
-                    "max_ms": 112,
-                    "fi_type": "DEPOSIT"
-                  },
-                  {
-                    "pending_count": 0,
-                    "p95_ms": 571.11,
-                    "avg_ms": 254.59,
-                    "sample_count": 108,
+                    "p95_ms": 666.9,
+                    "avg_ms": 261.52,
+                    "sample_count": 96,
                     "min_ms": 5,
                     "fi_request_trigger": "ACCOUNT_INITIATED",
-                    "median_ms": 218.25,
+                    "median_ms": 175,
                     "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
                     "max_ms": 2505,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 431.08,
-                    "avg_ms": 109.15,
-                    "sample_count": 21638,
-                    "min_ms": 3,
+                    "p95_ms": 624.28,
+                    "avg_ms": 154.13,
+                    "sample_count": 4502,
+                    "min_ms": 4,
                     "fi_request_trigger": "BATCH_INITIATED",
-                    "median_ms": 66.33,
+                    "median_ms": 102.07,
                     "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
                     "max_ms": 6831,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 1222.08,
-                    "avg_ms": 464.52,
-                    "sample_count": 1774,
+                    "p95_ms": 1310.5,
+                    "avg_ms": 501.53,
+                    "sample_count": 1294,
                     "min_ms": 4,
                     "fi_request_trigger": "CONSENT_BASED",
-                    "median_ms": 345.14,
+                    "median_ms": 371.27,
                     "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
                     "max_ms": 4133,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 0.71,
-                    "avg_ms": 0.32,
-                    "sample_count": 108,
+                    "p95_ms": 0.45,
+                    "avg_ms": 0.15,
+                    "sample_count": 96,
                     "min_ms": 0,
                     "fi_request_trigger": "ACCOUNT_INITIATED",
-                    "median_ms": 0.46,
+                    "median_ms": 0.1,
                     "transition": "DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED->PROCESSOR_ANALYTICS_COMPLETED",
-                    "max_ms": 10,
+                    "max_ms": 1,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 0.75,
+                    "p95_ms": 0.59,
                     "avg_ms": 0.14,
-                    "sample_count": 21638,
+                    "sample_count": 4502,
                     "min_ms": 0,
                     "fi_request_trigger": "BATCH_INITIATED",
-                    "median_ms": 0.04,
+                    "median_ms": 0.07,
                     "transition": "DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED->PROCESSOR_ANALYTICS_COMPLETED",
                     "max_ms": 9,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "pending_count": 1,
-                    "p95_ms": 0.98,
+                    "p95_ms": 1,
                     "avg_ms": 0.18,
-                    "sample_count": 1773,
+                    "sample_count": 1293,
                     "min_ms": 0,
                     "fi_request_trigger": "CONSENT_BASED",
                     "median_ms": 0,
@@ -1425,19 +1413,19 @@
             ],
             "items": [
               {
-                "pending_count": 93919,
-                "p95_ms": 185.24,
-                "avg_ms": 149.7,
-                "sample_count": 120888,
+                "pending_count": 61455,
+                "p95_ms": 192.57,
+                "avg_ms": 154.28,
+                "sample_count": 75030,
                 "min_ms": 104,
                 "fi_request_trigger": "",
-                "median_ms": 143.29,
+                "median_ms": 148.77,
                 "transition": "PROCESSOR_EVENT_RECEIVED->DEPOSIT_PRISM_TASK_CREATED",
                 "max_ms": 2451,
                 "fi_type": "DEPOSIT"
               },
               {
-                "pending_count": 214807,
+                "pending_count": 136484,
                 "p95_ms": null,
                 "avg_ms": null,
                 "sample_count": 0,
@@ -1449,13 +1437,13 @@
                 "fi_type": "DEPOSIT"
               },
               {
-                "pending_count": 119837,
-                "p95_ms": 604293851.29,
-                "avg_ms": 481283375.39,
-                "sample_count": 23520,
-                "min_ms": 2924,
+                "pending_count": 74464,
+                "p95_ms": 604754877.23,
+                "avg_ms": 415343334.62,
+                "sample_count": 5886,
+                "min_ms": 4276,
                 "fi_request_trigger": "",
-                "median_ms": 450951685.18,
+                "median_ms": 354406131.8,
                 "transition": "DEPOSIT_PRISM_TASK_CREATED->DEPOSIT_PRISM_CALLBACK_RECEIVED",
                 "max_ms": 605880534,
                 "fi_type": "DEPOSIT"
@@ -1463,8 +1451,8 @@
               {
                 "pending_count": 0,
                 "p95_ms": 1,
-                "avg_ms": 0.27,
-                "sample_count": 23520,
+                "avg_ms": 0.3,
+                "sample_count": 5886,
                 "min_ms": 0,
                 "fi_request_trigger": "",
                 "median_ms": 0,
@@ -1473,7 +1461,7 @@
                 "fi_type": "DEPOSIT"
               },
               {
-                "pending_count": 12,
+                "pending_count": 2,
                 "p95_ms": null,
                 "avg_ms": null,
                 "sample_count": 0,
@@ -1486,42 +1474,42 @@
               },
               {
                 "pending_count": 0,
-                "p95_ms": 7092.54,
-                "avg_ms": 5087.4,
-                "sample_count": 108,
+                "p95_ms": 9060.6,
+                "avg_ms": 6433,
+                "sample_count": 96,
                 "min_ms": 222,
                 "fi_request_trigger": "ACCOUNT_INITIATED",
-                "median_ms": 4991.68,
+                "median_ms": 6198.3,
                 "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
                 "max_ms": 59104,
                 "fi_type": "DEPOSIT"
               },
               {
                 "pending_count": 0,
-                "p95_ms": 10624.63,
-                "avg_ms": 4117.75,
-                "sample_count": 21638,
-                "min_ms": 144,
+                "p95_ms": 14195.1,
+                "avg_ms": 5510.42,
+                "sample_count": 4502,
+                "min_ms": 196,
                 "fi_request_trigger": "BATCH_INITIATED",
-                "median_ms": 3489.79,
+                "median_ms": 4818.83,
                 "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
                 "max_ms": 252266,
                 "fi_type": "DEPOSIT"
               },
               {
                 "pending_count": 0,
-                "p95_ms": 12131.04,
-                "avg_ms": 4141.12,
-                "sample_count": 1774,
-                "min_ms": 158,
+                "p95_ms": 16993.7,
+                "avg_ms": 5554.26,
+                "sample_count": 1294,
+                "min_ms": 174,
                 "fi_request_trigger": "CONSENT_BASED",
-                "median_ms": 2998.86,
+                "median_ms": 3938.5,
                 "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
                 "max_ms": 156996,
                 "fi_type": "DEPOSIT"
               },
               {
-                "pending_count": 23519,
+                "pending_count": 5886,
                 "p95_ms": null,
                 "avg_ms": null,
                 "sample_count": 0,
@@ -1534,81 +1522,69 @@
               },
               {
                 "pending_count": 0,
-                "p95_ms": 112,
-                "avg_ms": 112,
-                "sample_count": 1,
-                "min_ms": 112,
-                "fi_request_trigger": "BATCH_INITIATED",
-                "median_ms": 112,
-                "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCH_FAILED",
-                "max_ms": 112,
-                "fi_type": "DEPOSIT"
-              },
-              {
-                "pending_count": 0,
-                "p95_ms": 571.11,
-                "avg_ms": 254.59,
-                "sample_count": 108,
+                "p95_ms": 666.9,
+                "avg_ms": 261.52,
+                "sample_count": 96,
                 "min_ms": 5,
                 "fi_request_trigger": "ACCOUNT_INITIATED",
-                "median_ms": 218.25,
+                "median_ms": 175,
                 "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
                 "max_ms": 2505,
                 "fi_type": "DEPOSIT"
               },
               {
                 "pending_count": 0,
-                "p95_ms": 431.08,
-                "avg_ms": 109.15,
-                "sample_count": 21638,
-                "min_ms": 3,
+                "p95_ms": 624.28,
+                "avg_ms": 154.13,
+                "sample_count": 4502,
+                "min_ms": 4,
                 "fi_request_trigger": "BATCH_INITIATED",
-                "median_ms": 66.33,
+                "median_ms": 102.07,
                 "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
                 "max_ms": 6831,
                 "fi_type": "DEPOSIT"
               },
               {
                 "pending_count": 0,
-                "p95_ms": 1222.08,
-                "avg_ms": 464.52,
-                "sample_count": 1774,
+                "p95_ms": 1310.5,
+                "avg_ms": 501.53,
+                "sample_count": 1294,
                 "min_ms": 4,
                 "fi_request_trigger": "CONSENT_BASED",
-                "median_ms": 345.14,
+                "median_ms": 371.27,
                 "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
                 "max_ms": 4133,
                 "fi_type": "DEPOSIT"
               },
               {
                 "pending_count": 0,
-                "p95_ms": 0.71,
-                "avg_ms": 0.32,
-                "sample_count": 108,
+                "p95_ms": 0.45,
+                "avg_ms": 0.15,
+                "sample_count": 96,
                 "min_ms": 0,
                 "fi_request_trigger": "ACCOUNT_INITIATED",
-                "median_ms": 0.46,
+                "median_ms": 0.1,
                 "transition": "DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED->PROCESSOR_ANALYTICS_COMPLETED",
-                "max_ms": 10,
+                "max_ms": 1,
                 "fi_type": "DEPOSIT"
               },
               {
                 "pending_count": 0,
-                "p95_ms": 0.75,
+                "p95_ms": 0.59,
                 "avg_ms": 0.14,
-                "sample_count": 21638,
+                "sample_count": 4502,
                 "min_ms": 0,
                 "fi_request_trigger": "BATCH_INITIATED",
-                "median_ms": 0.04,
+                "median_ms": 0.07,
                 "transition": "DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED->PROCESSOR_ANALYTICS_COMPLETED",
                 "max_ms": 9,
                 "fi_type": "DEPOSIT"
               },
               {
                 "pending_count": 1,
-                "p95_ms": 0.98,
+                "p95_ms": 1,
                 "avg_ms": 0.18,
-                "sample_count": 1773,
+                "sample_count": 1293,
                 "min_ms": 0,
                 "fi_request_trigger": "CONSENT_BASED",
                 "median_ms": 0,
@@ -1617,51 +1593,51 @@
                 "fi_type": "DEPOSIT"
               }
             ],
-            "count": 16
+            "count": 15
           }
         },
         "fierrors": {
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-09-04T18:03:07.367020352Z",
+          "generatedAt": "2026-09-04T22:45:39.816671860Z",
           "data": {
             "count": 5,
             "items": [
               {
-                "normalized_error_category": "NETWORK",
-                "distinct_session_count": 107546,
-                "error_count": 125987,
-                "normalized_error_type": "PARTNER_TIMEOUT",
-                "distinct_account_count": 125372
+                "normalized_error_category": "PARTNER",
+                "distinct_session_count": 65363,
+                "error_count": 89183,
+                "normalized_error_type": "PARTNER_REJECTED",
+                "distinct_account_count": 89054
               },
               {
-                "normalized_error_category": "PARTNER",
-                "distinct_session_count": 29135,
-                "error_count": 51793,
-                "normalized_error_type": "PARTNER_REJECTED",
-                "distinct_account_count": 51621
+                "normalized_error_category": "NETWORK",
+                "distinct_session_count": 33921,
+                "error_count": 38131,
+                "normalized_error_type": "PARTNER_TIMEOUT",
+                "distinct_account_count": 37977
               },
               {
                 "normalized_error_category": "VALIDATION",
-                "distinct_session_count": 20468,
-                "error_count": 23794,
+                "distinct_session_count": 23283,
+                "error_count": 28104,
                 "normalized_error_type": "VALIDATION_FAILED",
-                "distinct_account_count": 23748
+                "distinct_account_count": 28094
               },
               {
                 "normalized_error_category": "UNCLASSIFIED",
-                "distinct_session_count": 376,
-                "error_count": 380,
+                "distinct_session_count": 265,
+                "error_count": 270,
                 "normalized_error_type": "UNCLASSIFIED",
-                "distinct_account_count": 380
+                "distinct_account_count": 270
               },
               {
                 "normalized_error_category": "BUSINESS_NO_DATA",
-                "distinct_session_count": 138,
-                "error_count": 142,
+                "distinct_session_count": 149,
+                "error_count": 153,
                 "normalized_error_type": "NO_DATA",
-                "distinct_account_count": 142
+                "distinct_account_count": 153
               }
             ]
           }
@@ -1673,16 +1649,16 @@
         "liveInsightEvents": 0,
         "depositConsentAvgMs": null,
         "depositConsentP95Ms": null,
-        "prismAvgMs": 481283375.39,
-        "prismP95Ms": 604293851.29,
+        "prismAvgMs": 415343334.62,
+        "prismP95Ms": 604754877.23,
         "prismMaxMs": 605880534,
-        "prismQueued": 93919,
+        "prismQueued": 61455,
         "fipDeliverAvgMs": 12752,
         "fipDeliverP95Ms": 18504,
-        "webhookAttempts": 31225,
+        "webhookAttempts": 138496,
         "webhookSuccessPct": 100,
-        "fiErrorTotal": 202096,
-        "fiSessionsAffected": 157663
+        "fiErrorTotal": 155841,
+        "fiSessionsAffected": 122981
       }
     },
     {
@@ -1696,7 +1672,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-09-04T18:03:10.628761814Z",
+          "generatedAt": "2026-09-04T22:45:42.169848561Z",
           "data": {
             "summary": {
               "byTransition": []
@@ -1710,7 +1686,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-09-04T18:03:10.233714144Z",
+          "generatedAt": "2026-09-04T22:45:41.907188142Z",
           "data": {
             "summary": {
               "byAnalyticsCallbackType": []
@@ -1724,20 +1700,20 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-09-04T18:03:10.433534469Z",
+          "generatedAt": "2026-09-04T22:45:42.760421777Z",
           "data": {
             "summary": {
               "byWebhookType": [
                 {
                   "webhook_type": "ANALYTICS",
-                  "attempt_count": 196503,
-                  "success_count": 196487,
+                  "attempt_count": 221253,
+                  "success_count": 221237,
                   "failed_count": 16,
                   "retried_message_count": 0,
                   "http_4xx_count": 0,
                   "http_5xx_count": 16,
-                  "avg_latency_ms": 12.52,
-                  "p95_latency_ms": 20.64
+                  "avg_latency_ms": 13.89,
+                  "p95_latency_ms": 32.76
                 },
                 {
                   "webhook_type": "CATEGORIZED_DATA",
@@ -1752,25 +1728,25 @@
                 },
                 {
                   "webhook_type": "CONSENT",
-                  "attempt_count": 12401,
-                  "success_count": 12392,
-                  "failed_count": 9,
+                  "attempt_count": 50014,
+                  "success_count": 49978,
+                  "failed_count": 36,
                   "retried_message_count": 0,
                   "http_4xx_count": 0,
-                  "http_5xx_count": 9,
-                  "avg_latency_ms": 170.66,
-                  "p95_latency_ms": 252.52
+                  "http_5xx_count": 36,
+                  "avg_latency_ms": 171.13,
+                  "p95_latency_ms": 255.49
                 },
                 {
                   "webhook_type": "RAW",
-                  "attempt_count": 135881,
-                  "success_count": 135877,
+                  "attempt_count": 232577,
+                  "success_count": 232573,
                   "failed_count": 4,
                   "retried_message_count": 0,
                   "http_4xx_count": 0,
                   "http_5xx_count": 4,
-                  "avg_latency_ms": 9.12,
-                  "p95_latency_ms": 15.84
+                  "avg_latency_ms": 8.83,
+                  "p95_latency_ms": 13.59
                 }
               ]
             },
@@ -1810,15 +1786,15 @@
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 12,
+                    "attempt_count": 33,
                     "webhook_type": "RAW",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 12,
-                    "p95_latency_ms": 7.25,
+                    "success_count": 33,
+                    "p95_latency_ms": 7.4,
                     "failed_count": 0,
-                    "avg_latency_ms": 6.9,
+                    "avg_latency_ms": 6.84,
                     "fi_type": "DEPOSIT"
                   }
                 ]
@@ -1830,12 +1806,12 @@
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 3,
+                    "attempt_count": 12,
                     "webhook_type": "ANALYTICS",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 3,
+                    "success_count": 12,
                     "p95_latency_ms": 7,
                     "failed_count": 0,
                     "avg_latency_ms": 6.33,
@@ -1864,57 +1840,57 @@
                   {
                     "http_5xx_count": 16,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 194363,
+                    "attempt_count": 212977,
                     "webhook_type": "ANALYTICS",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 194347,
-                    "p95_latency_ms": 20.63,
+                    "success_count": 212961,
+                    "p95_latency_ms": 33.37,
                     "failed_count": 16,
-                    "avg_latency_ms": 12.55,
+                    "avg_latency_ms": 14.11,
                     "fi_type": "MUTUAL_FUNDS"
                   },
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 2124,
+                    "attempt_count": 8251,
                     "webhook_type": "ANALYTICS",
                     "fi_data_origin": "MFC",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 2124,
-                    "p95_latency_ms": 21.91,
+                    "success_count": 8251,
+                    "p95_latency_ms": 17.1,
                     "failed_count": 0,
-                    "avg_latency_ms": 9.36,
+                    "avg_latency_ms": 8.38,
                     "fi_type": "MUTUAL_FUNDS"
                   },
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 126741,
+                    "attempt_count": 222320,
                     "webhook_type": "RAW",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 126741,
-                    "p95_latency_ms": 9.24,
+                    "success_count": 222320,
+                    "p95_latency_ms": 9.31,
                     "failed_count": 0,
-                    "avg_latency_ms": 7.97,
+                    "avg_latency_ms": 8.05,
                     "fi_type": "MUTUAL_FUNDS"
                   },
                   {
                     "http_5xx_count": 4,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 9110,
+                    "attempt_count": 10200,
                     "webhook_type": "RAW",
                     "fi_data_origin": "MFC",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 9106,
-                    "p95_latency_ms": 107.75,
+                    "success_count": 10196,
+                    "p95_latency_ms": 106.88,
                     "failed_count": 4,
-                    "avg_latency_ms": 25.17,
+                    "avg_latency_ms": 25.82,
                     "fi_type": "MUTUAL_FUNDS"
                   }
                 ]
@@ -1924,17 +1900,17 @@
                 "count": 1,
                 "items": [
                   {
-                    "http_5xx_count": 9,
+                    "http_5xx_count": 36,
                     "analytics_callback_type": "",
-                    "attempt_count": 12401,
+                    "attempt_count": 50014,
                     "webhook_type": "CONSENT",
                     "fi_data_origin": "",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 12392,
-                    "p95_latency_ms": 252.52,
-                    "failed_count": 9,
-                    "avg_latency_ms": 170.66,
+                    "success_count": 49978,
+                    "p95_latency_ms": 255.49,
+                    "failed_count": 36,
+                    "avg_latency_ms": 171.13,
                     "fi_type": ""
                   }
                 ]
@@ -1966,12 +1942,12 @@
                   {
                     "http_5xx_count": 0,
                     "analytics_callback_type": "ACCOUNT",
-                    "attempt_count": 2,
+                    "attempt_count": 8,
                     "webhook_type": "RAW",
                     "fi_data_origin": "AA",
                     "retried_message_count": 0,
                     "http_4xx_count": 0,
-                    "success_count": 2,
+                    "success_count": 8,
                     "p95_latency_ms": 7,
                     "failed_count": 0,
                     "avg_latency_ms": 6.5,
@@ -1998,12 +1974,12 @@
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 3,
+                "attempt_count": 12,
                 "webhook_type": "ANALYTICS",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 3,
+                "success_count": 12,
                 "p95_latency_ms": 7,
                 "failed_count": 0,
                 "avg_latency_ms": 6.33,
@@ -2012,29 +1988,29 @@
               {
                 "http_5xx_count": 16,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 194363,
+                "attempt_count": 212977,
                 "webhook_type": "ANALYTICS",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 194347,
-                "p95_latency_ms": 20.63,
+                "success_count": 212961,
+                "p95_latency_ms": 33.37,
                 "failed_count": 16,
-                "avg_latency_ms": 12.55,
+                "avg_latency_ms": 14.11,
                 "fi_type": "MUTUAL_FUNDS"
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 2124,
+                "attempt_count": 8251,
                 "webhook_type": "ANALYTICS",
                 "fi_data_origin": "MFC",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 2124,
-                "p95_latency_ms": 21.91,
+                "success_count": 8251,
+                "p95_latency_ms": 17.1,
                 "failed_count": 0,
-                "avg_latency_ms": 9.36,
+                "avg_latency_ms": 8.38,
                 "fi_type": "MUTUAL_FUNDS"
               },
               {
@@ -2052,31 +2028,31 @@
                 "fi_type": "DEPOSIT"
               },
               {
-                "http_5xx_count": 9,
+                "http_5xx_count": 36,
                 "analytics_callback_type": "",
-                "attempt_count": 12401,
+                "attempt_count": 50014,
                 "webhook_type": "CONSENT",
                 "fi_data_origin": "",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 12392,
-                "p95_latency_ms": 252.52,
-                "failed_count": 9,
-                "avg_latency_ms": 170.66,
+                "success_count": 49978,
+                "p95_latency_ms": 255.49,
+                "failed_count": 36,
+                "avg_latency_ms": 171.13,
                 "fi_type": ""
               },
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 12,
+                "attempt_count": 33,
                 "webhook_type": "RAW",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 12,
-                "p95_latency_ms": 7.25,
+                "success_count": 33,
+                "p95_latency_ms": 7.4,
                 "failed_count": 0,
-                "avg_latency_ms": 6.9,
+                "avg_latency_ms": 6.84,
                 "fi_type": "DEPOSIT"
               },
               {
@@ -2096,15 +2072,15 @@
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 126741,
+                "attempt_count": 222320,
                 "webhook_type": "RAW",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 126741,
-                "p95_latency_ms": 9.24,
+                "success_count": 222320,
+                "p95_latency_ms": 9.31,
                 "failed_count": 0,
-                "avg_latency_ms": 7.97,
+                "avg_latency_ms": 8.05,
                 "fi_type": "MUTUAL_FUNDS"
               },
               {
@@ -2124,12 +2100,12 @@
               {
                 "http_5xx_count": 0,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 2,
+                "attempt_count": 8,
                 "webhook_type": "RAW",
                 "fi_data_origin": "AA",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 2,
+                "success_count": 8,
                 "p95_latency_ms": 7,
                 "failed_count": 0,
                 "avg_latency_ms": 6.5,
@@ -2138,15 +2114,15 @@
               {
                 "http_5xx_count": 4,
                 "analytics_callback_type": "ACCOUNT",
-                "attempt_count": 9110,
+                "attempt_count": 10200,
                 "webhook_type": "RAW",
                 "fi_data_origin": "MFC",
                 "retried_message_count": 0,
                 "http_4xx_count": 0,
-                "success_count": 9106,
-                "p95_latency_ms": 107.75,
+                "success_count": 10196,
+                "p95_latency_ms": 106.88,
                 "failed_count": 4,
-                "avg_latency_ms": 25.17,
+                "avg_latency_ms": 25.82,
                 "fi_type": "MUTUAL_FUNDS"
               }
             ],
@@ -2157,7 +2133,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-09-04T18:03:09.757212580Z",
+          "generatedAt": "2026-09-04T22:45:41.955121628Z",
           "data": {
             "summary": {
               "byTransition": [
@@ -2452,30 +2428,30 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-09-04T18:03:10.345007926Z",
+          "generatedAt": "2026-09-04T22:45:42.707462061Z",
           "data": {
             "count": 5,
             "items": [
               {
                 "normalized_error_category": "PARTNER",
-                "distinct_session_count": 50595,
-                "error_count": 51244,
+                "distinct_session_count": 57630,
+                "error_count": 59163,
                 "normalized_error_type": "PARTNER_REJECTED",
-                "distinct_account_count": 51061
+                "distinct_account_count": 58650
               },
               {
                 "normalized_error_category": "VALIDATION",
-                "distinct_session_count": 7726,
-                "error_count": 7732,
+                "distinct_session_count": 9265,
+                "error_count": 9283,
                 "normalized_error_type": "VALIDATION_FAILED",
-                "distinct_account_count": 7730
+                "distinct_account_count": 9274
               },
               {
                 "normalized_error_category": "NETWORK",
-                "distinct_session_count": 943,
-                "error_count": 944,
+                "distinct_session_count": 716,
+                "error_count": 719,
                 "normalized_error_type": "PARTNER_TIMEOUT",
-                "distinct_account_count": 864
+                "distinct_account_count": 671
               },
               {
                 "normalized_error_category": "BUSINESS_NO_DATA",
@@ -2486,10 +2462,10 @@
               },
               {
                 "normalized_error_category": "UNCLASSIFIED",
-                "distinct_session_count": 1,
-                "error_count": 1,
+                "distinct_session_count": 3,
+                "error_count": 3,
                 "normalized_error_type": "UNCLASSIFIED",
-                "distinct_account_count": 1
+                "distinct_account_count": 3
               }
             ]
           }
@@ -2507,10 +2483,10 @@
         "prismQueued": 8,
         "fipDeliverAvgMs": null,
         "fipDeliverP95Ms": null,
-        "webhookAttempts": 344818,
-        "webhookSuccessPct": 99.9915897661955,
-        "fiErrorTotal": 59925,
-        "fiSessionsAffected": 59269
+        "webhookAttempts": 503877,
+        "webhookSuccessPct": 99.98888617658675,
+        "fiErrorTotal": 69172,
+        "fiSessionsAffected": 67618
       }
     }
   ]
