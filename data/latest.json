@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-03T20:34:07.309Z",
+  "capturedAt": "2026-10-03T23:30:00.681Z",
   "windowMinutes": 1440,
   "clients": [
     {
@@ -13,7 +13,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-10-03T20:34:08.799765890Z",
+          "generatedAt": "2026-10-03T23:30:02.815884239Z",
           "data": {
             "summary": {
               "byTransition": [
@@ -718,7 +718,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-10-03T20:34:08.241469742Z",
+          "generatedAt": "2026-10-03T23:30:02.329730064Z",
           "data": {
             "summary": {
               "byAnalyticsCallbackType": []
@@ -732,7 +732,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-10-03T20:34:08.251801381Z",
+          "generatedAt": "2026-10-03T23:30:02.421794615Z",
           "data": {
             "summary": {
               "byWebhookType": []
@@ -746,24 +746,24 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-10-03T20:34:08.372503300Z",
+          "generatedAt": "2026-10-03T23:30:02.287534148Z",
           "data": {
             "summary": {
               "byTransition": [
                 {
                   "transition": "PROCESSOR_EVENT_RECEIVED->DEPOSIT_PRISM_TASK_CREATED",
-                  "sample_count": 217373,
-                  "pending_count": 135888,
-                  "avg_ms": 160.39,
-                  "median_ms": 152.2,
-                  "p95_ms": 212.34,
-                  "min_ms": 103,
+                  "sample_count": 162353,
+                  "pending_count": 115161,
+                  "avg_ms": 162.09,
+                  "median_ms": 153.56,
+                  "p95_ms": 215.59,
+                  "min_ms": 104,
                   "max_ms": 32926
                 },
                 {
                   "transition": "PROCESSOR_EVENT_RECEIVED->DEPOSIT_PRISM_TASK_CREATE_FAILED",
                   "sample_count": 0,
-                  "pending_count": 353261,
+                  "pending_count": 277514,
                   "avg_ms": null,
                   "median_ms": null,
                   "p95_ms": null,
@@ -772,38 +772,38 @@
                 },
                 {
                   "transition": "DEPOSIT_PRISM_TASK_CREATED->DEPOSIT_PRISM_CALLBACK_RECEIVED",
-                  "sample_count": 60113,
-                  "pending_count": 216688,
-                  "avg_ms": 586257132.15,
-                  "median_ms": 599656985.49,
-                  "p95_ms": 599910170.09,
+                  "sample_count": 46550,
+                  "pending_count": 161712,
+                  "avg_ms": 584011622.9,
+                  "median_ms": 599138728.73,
+                  "p95_ms": 599400352.05,
                   "min_ms": 2599,
                   "max_ms": 605632606
                 },
                 {
                   "transition": "DEPOSIT_PRISM_CALLBACK_RECEIVED->DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED",
-                  "sample_count": 60113,
+                  "sample_count": 46550,
                   "pending_count": 0,
                   "avg_ms": 0.16,
                   "median_ms": 0,
                   "p95_ms": 1,
                   "min_ms": 0,
-                  "max_ms": 22
+                  "max_ms": 3
                 },
                 {
                   "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
-                  "sample_count": 60115,
-                  "pending_count": 11,
-                  "avg_ms": 289308.32,
-                  "median_ms": 343843.9,
-                  "p95_ms": 571767.35,
+                  "sample_count": 46564,
+                  "pending_count": 5,
+                  "avg_ms": 333895.21,
+                  "median_ms": 397750.28,
+                  "p95_ms": 657804.64,
                   "min_ms": 152,
                   "max_ms": 2032718
                 },
                 {
                   "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCH_FAILED",
                   "sample_count": 0,
-                  "pending_count": 60113,
+                  "pending_count": 46550,
                   "avg_ms": null,
                   "median_ms": null,
                   "p95_ms": null,
@@ -812,21 +812,21 @@
                 },
                 {
                   "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
-                  "sample_count": 60113,
+                  "sample_count": 46562,
                   "pending_count": 2,
-                  "avg_ms": 49.92,
-                  "median_ms": 17.08,
-                  "p95_ms": 203.93,
+                  "avg_ms": 53.35,
+                  "median_ms": 18.2,
+                  "p95_ms": 225.58,
                   "min_ms": 2,
                   "max_ms": 2744
                 },
                 {
                   "transition": "DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED->PROCESSOR_ANALYTICS_COMPLETED",
-                  "sample_count": 60113,
+                  "sample_count": 46562,
                   "pending_count": 0,
                   "avg_ms": 0.1,
                   "median_ms": 0,
-                  "p95_ms": 0.98,
+                  "p95_ms": 0.97,
                   "min_ms": 0,
                   "max_ms": 4
                 }
@@ -838,19 +838,19 @@
                 "count": 15,
                 "items": [
                   {
-                    "pending_count": 135888,
-                    "p95_ms": 212.34,
-                    "avg_ms": 160.39,
-                    "sample_count": 217373,
-                    "min_ms": 103,
+                    "pending_count": 115161,
+                    "p95_ms": 215.59,
+                    "avg_ms": 162.09,
+                    "sample_count": 162353,
+                    "min_ms": 104,
                     "fi_request_trigger": "",
-                    "median_ms": 152.2,
+                    "median_ms": 153.56,
                     "transition": "PROCESSOR_EVENT_RECEIVED->DEPOSIT_PRISM_TASK_CREATED",
                     "max_ms": 32926,
                     "fi_type": "DEPOSIT"
                   },
                   {
-                    "pending_count": 353261,
+                    "pending_count": 277514,
                     "p95_ms": null,
                     "avg_ms": null,
                     "sample_count": 0,
@@ -862,13 +862,13 @@
                     "fi_type": "DEPOSIT"
                   },
                   {
-                    "pending_count": 216688,
-                    "p95_ms": 599910170.09,
-                    "avg_ms": 586257132.15,
-                    "sample_count": 60113,
+                    "pending_count": 161712,
+                    "p95_ms": 599400352.05,
+                    "avg_ms": 584011622.9,
+                    "sample_count": 46550,
                     "min_ms": 2599,
                     "fi_request_trigger": "",
-                    "median_ms": 599656985.49,
+                    "median_ms": 599138728.73,
                     "transition": "DEPOSIT_PRISM_TASK_CREATED->DEPOSIT_PRISM_CALLBACK_RECEIVED",
                     "max_ms": 605632606,
                     "fi_type": "DEPOSIT"
@@ -877,16 +877,16 @@
                     "pending_count": 0,
                     "p95_ms": 1,
                     "avg_ms": 0.16,
-                    "sample_count": 60113,
+                    "sample_count": 46550,
                     "min_ms": 0,
                     "fi_request_trigger": "",
                     "median_ms": 0,
                     "transition": "DEPOSIT_PRISM_CALLBACK_RECEIVED->DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED",
-                    "max_ms": 22,
+                    "max_ms": 3,
                     "fi_type": "DEPOSIT"
                   },
                   {
-                    "pending_count": 11,
+                    "pending_count": 5,
                     "p95_ms": null,
                     "avg_ms": null,
                     "sample_count": 0,
@@ -911,30 +911,30 @@
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 573784.98,
-                    "avg_ms": 289904.64,
-                    "sample_count": 58624,
+                    "p95_ms": 660665.39,
+                    "avg_ms": 334766.59,
+                    "sample_count": 45125,
                     "min_ms": 152,
                     "fi_request_trigger": "BATCH_INITIATED",
-                    "median_ms": 344668.67,
+                    "median_ms": 398973.44,
                     "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
                     "max_ms": 2017766,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 504936.94,
-                    "avg_ms": 272600.43,
-                    "sample_count": 1454,
+                    "p95_ms": 583055.68,
+                    "avg_ms": 314632.68,
+                    "sample_count": 1402,
                     "min_ms": 187,
                     "fi_request_trigger": "CONSENT_BASED",
-                    "median_ms": 319313.29,
+                    "median_ms": 368850.87,
                     "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
                     "max_ms": 2032718,
                     "fi_type": "DEPOSIT"
                   },
                   {
-                    "pending_count": 60113,
+                    "pending_count": 46550,
                     "p95_ms": null,
                     "avg_ms": null,
                     "sample_count": 0,
@@ -959,24 +959,24 @@
                   },
                   {
                     "pending_count": 2,
-                    "p95_ms": 187.66,
-                    "avg_ms": 42.21,
-                    "sample_count": 58622,
+                    "p95_ms": 205.24,
+                    "avg_ms": 44.04,
+                    "sample_count": 45123,
                     "min_ms": 2,
                     "fi_request_trigger": "BATCH_INITIATED",
-                    "median_ms": 9.33,
+                    "median_ms": 9.37,
                     "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
                     "max_ms": 2744,
                     "fi_type": "DEPOSIT"
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 854.07,
-                    "avg_ms": 357.75,
-                    "sample_count": 1454,
+                    "p95_ms": 874.36,
+                    "avg_ms": 349.61,
+                    "sample_count": 1402,
                     "min_ms": 4,
                     "fi_request_trigger": "CONSENT_BASED",
-                    "median_ms": 325.06,
+                    "median_ms": 298.03,
                     "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
                     "max_ms": 1498,
                     "fi_type": "DEPOSIT"
@@ -997,7 +997,7 @@
                     "pending_count": 0,
                     "p95_ms": 0.99,
                     "avg_ms": 0.1,
-                    "sample_count": 58622,
+                    "sample_count": 45123,
                     "min_ms": 0,
                     "fi_request_trigger": "BATCH_INITIATED",
                     "median_ms": 0,
@@ -1007,12 +1007,12 @@
                   },
                   {
                     "pending_count": 0,
-                    "p95_ms": 0.59,
-                    "avg_ms": 0.1,
-                    "sample_count": 1454,
+                    "p95_ms": 0.6,
+                    "avg_ms": 0.11,
+                    "sample_count": 1402,
                     "min_ms": 0,
                     "fi_request_trigger": "CONSENT_BASED",
-                    "median_ms": 0.02,
+                    "median_ms": 0.03,
                     "transition": "DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED->PROCESSOR_ANALYTICS_COMPLETED",
                     "max_ms": 1,
                     "fi_type": "DEPOSIT"
@@ -1022,19 +1022,19 @@
             ],
             "items": [
               {
-                "pending_count": 135888,
-                "p95_ms": 212.34,
-                "avg_ms": 160.39,
-                "sample_count": 217373,
-                "min_ms": 103,
+                "pending_count": 115161,
+                "p95_ms": 215.59,
+                "avg_ms": 162.09,
+                "sample_count": 162353,
+                "min_ms": 104,
                 "fi_request_trigger": "",
-                "median_ms": 152.2,
+                "median_ms": 153.56,
                 "transition": "PROCESSOR_EVENT_RECEIVED->DEPOSIT_PRISM_TASK_CREATED",
                 "max_ms": 32926,
                 "fi_type": "DEPOSIT"
               },
               {
-                "pending_count": 353261,
+                "pending_count": 277514,
                 "p95_ms": null,
                 "avg_ms": null,
                 "sample_count": 0,
@@ -1046,13 +1046,13 @@
                 "fi_type": "DEPOSIT"
               },
               {
-                "pending_count": 216688,
-                "p95_ms": 599910170.09,
-                "avg_ms": 586257132.15,
-                "sample_count": 60113,
+                "pending_count": 161712,
+                "p95_ms": 599400352.05,
+                "avg_ms": 584011622.9,
+                "sample_count": 46550,
                 "min_ms": 2599,
                 "fi_request_trigger": "",
-                "median_ms": 599656985.49,
+                "median_ms": 599138728.73,
                 "transition": "DEPOSIT_PRISM_TASK_CREATED->DEPOSIT_PRISM_CALLBACK_RECEIVED",
                 "max_ms": 605632606,
                 "fi_type": "DEPOSIT"
@@ -1061,16 +1061,16 @@
                 "pending_count": 0,
                 "p95_ms": 1,
                 "avg_ms": 0.16,
-                "sample_count": 60113,
+                "sample_count": 46550,
                 "min_ms": 0,
                 "fi_request_trigger": "",
                 "median_ms": 0,
                 "transition": "DEPOSIT_PRISM_CALLBACK_RECEIVED->DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED",
-                "max_ms": 22,
+                "max_ms": 3,
                 "fi_type": "DEPOSIT"
               },
               {
-                "pending_count": 11,
+                "pending_count": 5,
                 "p95_ms": null,
                 "avg_ms": null,
                 "sample_count": 0,
@@ -1095,30 +1095,30 @@
               },
               {
                 "pending_count": 0,
-                "p95_ms": 573784.98,
-                "avg_ms": 289904.64,
-                "sample_count": 58624,
+                "p95_ms": 660665.39,
+                "avg_ms": 334766.59,
+                "sample_count": 45125,
                 "min_ms": 152,
                 "fi_request_trigger": "BATCH_INITIATED",
-                "median_ms": 344668.67,
+                "median_ms": 398973.44,
                 "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
                 "max_ms": 2017766,
                 "fi_type": "DEPOSIT"
               },
               {
                 "pending_count": 0,
-                "p95_ms": 504936.94,
-                "avg_ms": 272600.43,
-                "sample_count": 1454,
+                "p95_ms": 583055.68,
+                "avg_ms": 314632.68,
+                "sample_count": 1402,
                 "min_ms": 187,
                 "fi_request_trigger": "CONSENT_BASED",
-                "median_ms": 319313.29,
+                "median_ms": 368850.87,
                 "transition": "DEPOSIT_PRISM_CATEGORIZED_EVENT_PUBLISHED->DEPOSIT_PRISM_RESULT_FETCHED",
                 "max_ms": 2032718,
                 "fi_type": "DEPOSIT"
               },
               {
-                "pending_count": 60113,
+                "pending_count": 46550,
                 "p95_ms": null,
                 "avg_ms": null,
                 "sample_count": 0,
@@ -1143,24 +1143,24 @@
               },
               {
                 "pending_count": 2,
-                "p95_ms": 187.66,
-                "avg_ms": 42.21,
-                "sample_count": 58622,
+                "p95_ms": 205.24,
+                "avg_ms": 44.04,
+                "sample_count": 45123,
                 "min_ms": 2,
                 "fi_request_trigger": "BATCH_INITIATED",
-                "median_ms": 9.33,
+                "median_ms": 9.37,
                 "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
                 "max_ms": 2744,
                 "fi_type": "DEPOSIT"
               },
               {
                 "pending_count": 0,
-                "p95_ms": 854.07,
-                "avg_ms": 357.75,
-                "sample_count": 1454,
+                "p95_ms": 874.36,
+                "avg_ms": 349.61,
+                "sample_count": 1402,
                 "min_ms": 4,
                 "fi_request_trigger": "CONSENT_BASED",
-                "median_ms": 325.06,
+                "median_ms": 298.03,
                 "transition": "DEPOSIT_PRISM_RESULT_FETCHED->DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED",
                 "max_ms": 1498,
                 "fi_type": "DEPOSIT"
@@ -1181,7 +1181,7 @@
                 "pending_count": 0,
                 "p95_ms": 0.99,
                 "avg_ms": 0.1,
-                "sample_count": 58622,
+                "sample_count": 45123,
                 "min_ms": 0,
                 "fi_request_trigger": "BATCH_INITIATED",
                 "median_ms": 0,
@@ -1191,12 +1191,12 @@
               },
               {
                 "pending_count": 0,
-                "p95_ms": 0.59,
-                "avg_ms": 0.1,
-                "sample_count": 1454,
+                "p95_ms": 0.6,
+                "avg_ms": 0.11,
+                "sample_count": 1402,
                 "min_ms": 0,
                 "fi_request_trigger": "CONSENT_BASED",
-                "median_ms": 0.02,
+                "median_ms": 0.03,
                 "transition": "DEPOSIT_PRISM_CATEGORIZED_DATA_SAVED->PROCESSOR_ANALYTICS_COMPLETED",
                 "max_ms": 1,
                 "fi_type": "DEPOSIT"
@@ -1209,7 +1209,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-10-03T20:34:08.246760032Z",
+          "generatedAt": "2026-10-03T23:30:02.898283591Z",
           "data": {
             "items": [],
             "count": 0
@@ -1222,10 +1222,10 @@
         "liveInsightEvents": 0,
         "depositConsentAvgMs": null,
         "depositConsentP95Ms": null,
-        "prismAvgMs": 586257132.15,
-        "prismP95Ms": 599910170.09,
+        "prismAvgMs": 584011622.9,
+        "prismP95Ms": 599400352.05,
         "prismMaxMs": 605632606,
-        "prismQueued": 135888,
+        "prismQueued": 115161,
         "fipDeliverAvgMs": 12752,
         "fipDeliverP95Ms": 18504,
         "webhookAttempts": 0,
@@ -1245,7 +1245,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-10-03T20:34:10.269266033Z",
+          "generatedAt": "2026-10-03T23:30:04.837692271Z",
           "data": {
             "summary": {
               "byTransition": []
@@ -1259,7 +1259,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-10-03T20:34:09.833130694Z",
+          "generatedAt": "2026-10-03T23:30:05.235608904Z",
           "data": {
             "summary": {
               "byAnalyticsCallbackType": []
@@ -1273,7 +1273,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-10-03T20:34:10.667979616Z",
+          "generatedAt": "2026-10-03T23:30:04.614874692Z",
           "data": {
             "summary": {
               "byWebhookType": []
@@ -1287,7 +1287,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-10-03T20:34:10.753450788Z",
+          "generatedAt": "2026-10-03T23:30:05.137817484Z",
           "data": {
             "summary": {
               "byTransition": [
@@ -1582,7 +1582,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-10-03T20:34:10.566896425Z",
+          "generatedAt": "2026-10-03T23:30:05.348214944Z",
           "data": {
             "items": [],
             "count": 0
