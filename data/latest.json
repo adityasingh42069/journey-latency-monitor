@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-18T02:43:10.217Z",
+  "capturedAt": "2026-11-18T11:03:54.306Z",
   "windowMinutes": 1440,
   "clients": [
     {
@@ -13,7 +13,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-11-18T02:43:12.443558096Z",
+          "generatedAt": "2026-11-18T11:03:55.861508236Z",
           "data": {
             "summary": {
               "byTransition": [
@@ -718,7 +718,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-11-18T02:43:12.728809216Z",
+          "generatedAt": "2026-11-18T11:03:55.639336060Z",
           "data": {
             "summary": {
               "byAnalyticsCallbackType": []
@@ -732,7 +732,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-11-18T02:43:11.960593176Z",
+          "generatedAt": "2026-11-18T11:03:54.959275931Z",
           "data": {
             "summary": {
               "byWebhookType": []
@@ -746,7 +746,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-11-18T02:43:12.739873794Z",
+          "generatedAt": "2026-11-18T11:03:55.609706873Z",
           "data": {
             "summary": {
               "byTransition": []
@@ -760,7 +760,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@onepercentclub",
-          "generatedAt": "2026-11-18T02:43:12.793809099Z",
+          "generatedAt": "2026-11-18T11:03:55.664320667Z",
           "data": {
             "items": [],
             "count": 0
@@ -796,7 +796,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-11-18T02:43:14.539270866Z",
+          "generatedAt": "2026-11-18T11:03:58.052431797Z",
           "data": {
             "summary": {
               "byTransition": []
@@ -810,7 +810,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-11-18T02:43:15.336643772Z",
+          "generatedAt": "2026-11-18T11:03:57.872135486Z",
           "data": {
             "summary": {
               "byAnalyticsCallbackType": []
@@ -824,7 +824,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-11-18T02:43:15.332548633Z",
+          "generatedAt": "2026-11-18T11:03:57.861591877Z",
           "data": {
             "summary": {
               "byWebhookType": []
@@ -838,7 +838,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-11-18T02:43:15.344406921Z",
+          "generatedAt": "2026-11-18T11:03:57.867423297Z",
           "data": {
             "summary": {
               "byTransition": []
@@ -852,7 +852,7 @@
           "ok": true,
           "status": 200,
           "tenantId": "fiulive@paytmmoneypfm",
-          "generatedAt": "2026-11-18T02:43:15.364485999Z",
+          "generatedAt": "2026-11-18T11:03:57.217564755Z",
           "data": {
             "items": [],
             "count": 0
